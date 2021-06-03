@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
   root "pages#index"
+  devise_for :users
+  devise_scope :user do
+    delete "/users/sign_out" => "devise/sessions#destroy"
+  end
 
-  get 'pages/index'
-  get 'pages/show'
+  resources :users, only: %i[destroy] do
+    resources :pages, only: %i[index show]
+  end
 end
