@@ -1,2 +1,329 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+ <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD2FGFN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <script crossorigin='anonymous' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <div class='notice_alert'>
+      <p>
+        <i class="fa fa-exclamation-circle"></i>
+        <span>
+          【重要】メールに送信される『不審なログイン』通知は弊社システムによるログインなので無視してください。
+          不審と判断されるのはお客様の携帯以外から弊社が自動アクションを行うため代理でアクセスしたため、確認のための通知です。
+          また、インスタのアプリ側で表示されるログイン確認は『自分が実行したものです』を必ず選択してください
+        </span>
+      </p>
+      <div class='unkownn_login_img'>
+        <img src='https://partner-setting.s3-ap-northeast-1.amazonaws.com/static/unknown_login_app.png'>
+        <img src='https://partner-setting.s3-ap-northeast-1.amazonaws.com/static/unknown_login_mail.png'>
+      </div>
+    </div>
+    <div class='white_pay_modal'>
+      <div class='pay_appeal'>
+        <h5>
+          無料お試し期間が終了しました。
+        </h5>
+        <p>
+          引き続きサービスをご利用いただくには
+          <br>
+          こちらからプランの変更を行ってください。
+        </p>
+        <a class='btn btn-appeal' href='/subscriptions?from=modal'>
+          プランを変更する
+        </a>
+        <button class='btn_pay_modal_close'>
+          今はしない
+        </button>
+        <div class='clearfix'></div>
+      </div>
+    </div>
+    <div class='white_recursion_modal'>
+      <div class='recursion_appeal'>
+        <h5>
+          有料プランの期限が間もなく終了します。
+        </h5>
+        <p>
+          引き続きサービスをご利用いただくには
+          <br>
+          こちらから自動更新の設定を行ってください。
+        </p>
+        <a class='btn btn-appeal' href='/subscriptions/settings/auto_charge?from=modal'>
+          自動更新の設定をする
+        </a>
+        <button class='btn_recursion_modal_close'>
+          今はしない
+        </button>
+        <div class='clearfix'></div>
+      </div>
+    </div>
+    <div class='white_modal'>
+      <div class='tutorial'>
+        <div class='step1'>
+          <div class='tutorial_header'>
+            <h4>
+              フォロワーを増やす手順
+            </h4>
+            <span class='current'>
+              STEP1
+            </span>
+            <span>
+              STEP2
+            </span>
+          </div>
+          <h5>
+            インスタグラムのアカウントが非公開になっていませんか？
+          </h5>
+          <p class='tutorial_desc'>
+            せっかく自動でいいねを残してもあなたのプロフィールが非公開になっていては、フォロワーは増えません。<br />非公開になっている場合は必ず解除しましょう。<br />
+          </p>
+          <center>
+            <img src='/img/users/insta_tutorial_01_ja.png'>
+          </center>
+          <button class='btn btn-primary btn-block end_step1'>
+            次へ
+          </button>
+        </div>
+        <div class='step2 hide'>
+          <div class='tutorial_header'>
+            <h4>
+              フォロワーを増やす手順
+            </h4>
+            <span>
+              STEP1
+            </span>
+            <span class='current'>
+              STEP2
+            </span>
+          </div>
+          <h5>
+            まずはハッシュタグを登録しましょう
+          </h5>
+          <button class='btn btn-primary btn-block end_step2'>
+            ハッシュタグを登録する
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class='auto_like_start hide' data-text='「アクションログ」をタップしてください。'>
+      <p>
+        自動いいねが始まりました
+      </p>
+      <p>
+        どんな写真にいいねしているかを確認するには
+      </p>
+      <p>
+        こちらをタップしてみてください。
+      </p>
+    </div>
+
+    <%= render partial: "layouts/templete/header" %>
+
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12 user_main'>
+          <div class='row upper'>
+            <div class='col-md-6 col-sm-6'>
+              <div class='row'>
+                <div class='user_meta col-md-6 col-sm-6 col-xs-6'>
+                  <div class='profile'>
+                    <img class='user_thumbnail' src='https://instagram.fplu8-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fplu8-1.fna.fbcdn.net&amp;_nc_ohc=Bm3cx4d7KpcAX9WqCTG&amp;edm=ALlQn9MBAAAA&amp;ccb=7-4&amp;oh=9233bbf9cfc4dcc785c3a54f0bbc4781&amp;oe=60BCD84F&amp;_nc_sid=48a2a6&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4'>
+                    <p class='name'>
+                      aaa_xmxbchdids
+                    </p>
+                  </div>
+                </div>
+                <div class='current_plan col-md-6 col-sm-6 col-xs-6'>
+                  <div class='wrap'>
+                    <div class='title'>
+                      現在のプラン
+                    </div>
+                    <div class='plan'>
+                      無料お試し
+                    </div>
+                    <a class='change_plan' href='/subscriptions'>
+                      変更
+                    </a>
+                    <div class='time'>
+                      <p>
+                        有効期限:
+                        2021/6/6
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='number_wrap col-md-6 col-sm-6 col-xs-6'>
+                  <div class='follower'>
+                    <div class='title'>
+                      フォロワー
+                    </div>
+                    <span class='count'>
+                      0
+                    </span>
+                  </div>
+                </div>
+                <div class='number_wrap col-md-6 col-sm-6 col-xs-6'>
+                  <div class='follow'>
+                    <div class='title'>
+                      自動アクション
+                    </div>
+                    <span class='count'>
+                      <i class="fa fa-heart heart"></i>
+                      0
+                      <span>
+                        (6/2)
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='button_wrap col-md-6 col-sm-6 col-xs-6'>
+                  <a class='btn btn-primary btn-sm btn-block btn_follower_report' href='/users/332529/analytics'>
+                    フォロワーレポート
+                  </a>
+                </div>
+                <div class='button_wrap col-md-6 col-sm-6 col-xs-6'>
+                  <a class='btn btn-primary btn-sm btn-block btn-activity' href='/users/332529/activity'>
+                    アクションログ
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class='col-md-6 col-sm-6'>
+              <h2 class='pc_no_margin_top' id='hash_tag'>
+                ハッシュタグ設定
+              </h2>
+              <div class='tag_search'>
+                <p class='tag_desc'>
+                  こちらに登録したハッシュタグがついている写真に対して自動いいね、フォローを行います。
+                  <br>
+                  フォローして欲しいユーザーが投稿しそうなハッシュタグを登録しましょう。
+                </p>
+                <div class='control-group'>
+                  <p class='searching_text hide'>
+                    検索中...
+                  </p>
+                  <select class='tag_input' id='select-repo' placeholder='追加したいタグ名を入力してください'></select>
+                </div>
+                <div class='related_hashtags'>
+                  <span class='title'>
+                    関連:
+                  </span>
+                  <ul class='related_hashtags_ul'></ul>
+                </div>
+                <div class='clearfix'></div>
+                <div class='selected_tag'>
+                  <span class='title'>
+                    登録中のハッシュタグ
+                  </span>
+                  <span class='right_title'>
+                    フォロワー獲得数
+                  </span>
+                  <ul class='selected_tag_ul' data-text='計測中'>
+                  </ul>
+                  <div class='clearfix'></div>
+                  <div class='progress-container'>
+                    <div class='title registration_rate_title'>
+                      ハッシュタグ登録率
+                    </div>
+                    <div class='progress'>
+                      <div aria-valuemax='100' aria-valuemin='0' class='progress-bar' role='progressbar' style='width: 0%;'></div>
+                    </div>
+                    <div class='registration_rate'></div>
+                  </div>
+                </div>
+                <div class='tips'>
+                  一定のフォロワーを獲得している方は
+                  平均12個のタグを登録しています
+
+                </div>
+              </div>
+              <div class='line_banner hidden-lg hidden-md'>
+                <img class='icon_line_close' src='/img/users/icon_close_black.png'>
+                <p class='line_desc'>
+                  困ったことや分からないことはLINEにてお気軽にお問い合わせください。お問い合わせの際はインスタグラムのアカウント名を必ずお送り下さい。
+                </p>
+                <div class='example'>
+                  <span>
+                    (例)
+                  </span>
+                  <br>
+                  <span>
+                    ・使い方が分からない
+                  </span>
+                  <br>
+                  <span>
+                    ・フォロワーがなかなか増えない
+                  </span>
+                </div>
+                <a href="https://line.me/ti/p/%40gxh0241p"><img class="img_line_add"  border="0" alt="友だち追加数" src="/img/users/add_friends_ja.png"></a>
+              </div>
+            </div>
+          </div>
+          <h2>
+            自動アクション
+          </h2>
+          <div class='auto_setting'>
+            <div class='control-group'>
+              <label for='auto_like'>
+                自動いいね
+                (※オンにするとインスタグラムから警告を受けたり、アクションをブロックされる可能性があります)
+              </label>
+              <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_like' type='checkbox'>-->
+              <div class="switch">
+                <label class="switch__label">
+                  <input type="checkbox" class="switch__input"/>
+                  <span class="switch__content"></span>
+                  <span class="switch__circle"></span>
+                </label>
+              </div>
+            </div>
+            <label class='auto_like_target_label'>一日あたりの自動いいね数設定</label>
+            <div class='auto_like_target_radio'>
+              <label>
+                <input checked name='auto_like_target' type='radio' value='50'>
+                50程度
+              </label>
+              <label>
+                <input name='auto_like_target' type='radio' value='100'>
+                100程度
+              </label>
+              <label>
+                <input name='auto_like_target' type='radio' value='400'>
+                100以上
+              </label>
+            </div>
+            <div class='control-group'>
+              <label for='auto_follow'>
+                自動フォロー
+                (※オンにするとインスタグラムから警告を受けたり、アクションをブロックされる可能性があります)
+              </label>
+              <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_follow' type='checkbox'>-->
+              <div class="switch">
+                <label class="switch__label">
+                  <input type="checkbox" class="switch__input"/>
+                  <span class="switch__content"></span>
+                  <span class="switch__circle"></span>
+                </label>
+              </div>
+            </div>
+            <div class='control-group'>
+              <label for='auto_unfollow'>
+                自動フォロー解除
+              </label>
+              <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_unfollow' type='checkbox'>-->
+              <div class="switch">
+                <label class="switch__label">
+                  <input type="checkbox" class="switch__input"/>
+                  <span class="switch__content"></span>
+                <span class="switch__circle"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>Admin.setPage("user");  Admin.init();</script>
