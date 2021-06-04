@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <%#= render partial: "layouts/errors", locals: { message: :name } %>
+    <%= render partial: "layouts/templete/header" %>
     <%= yield %>
+    <%= render partial: "layouts/templete/footer" %>
   </body>
 </html>
