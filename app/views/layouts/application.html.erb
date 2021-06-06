@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja-JP">
   <head>
-    <title>InstaBot</title>
+    <title><%= content_for?(:title) ? yield(:title) :InstaBot %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,8 +10,6 @@
   </head>
 
   <body>
-    <%#= render partial: "layouts/errors", locals: { message: :name } %>
-    <%= render partial: "layouts/templete/header" %>
     <%= yield %>
     <%= render partial: "layouts/templete/footer" %>
   </body>

@@ -1,16 +1,32 @@
- <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD2FGFN"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<!DOCTYPE html>
+<html lang='ja-JP'>
+<head>
+  <meta charset='utf-8'>
+  <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' name='viewport'>
+  <meta content='ja_JP' property='og:locale'>
+  <meta content='website' property='og:type'>
+  <meta content='HASH365[ハッシュ365]' property='og:site_name'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' property='og:description'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' name='description'>
+  <meta content='' property='og:title'>
+  <%= content_for :title do %>
+    HASH365[ハッシュ365]
+  <% end %>
+  <meta content='noindex, nofollow' name='robots'>
 
+    <link rel="stylesheet" media="all" href="../css/index.css" data-turbolinks-track="false" />
+    <script src="../js/index.js" data-turbolinks-track="false"></script>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="RFcL6TbCyxD2221mpzn8P3wJWgTzqjC/8Z8zaLUNBh0Z3WssjoxRyZc+mDh6VrI8D1j0ppYg9NvgOQYqnW/qdw==" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+</head>
+<body>
     <script crossorigin='anonymous' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <div class='notice_alert'>
       <p>
         <i class="fa fa-exclamation-circle"></i>
         <span>
-          【重要】メールに送信される『不審なログイン』通知は弊社システムによるログインなので無視してください。
-          不審と判断されるのはお客様の携帯以外から弊社が自動アクションを行うため代理でアクセスしたため、確認のための通知です。
-          また、インスタのアプリ側で表示されるログイン確認は『自分が実行したものです』を必ず選択してください
+          【重要】メールに送信される『不審なログイン』通知は弊社システムによるログインなので無視してください。不審と判断されるのはお客様の携帯以外から弊社が自動アクションを行うため代理でアクセスしたため、確認のための通知です。また、インスタのアプリ側で表示されるログイン確認は『自分が実行したものです』を必ず選択してください
         </span>
       </p>
       <div class='unkownn_login_img'>
@@ -115,8 +131,27 @@
         こちらをタップしてみてください。
       </p>
     </div>
-
-    <%= render partial: "layouts/templete/header" %>
+    <header id='main'>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-12'>
+            <div class='header_link'>
+              <a class="settings" href="/users/332529/settings">設定</a>
+              <a class="logout" rel="nofollow" data-method="get" href="/users/sign_out">ログアウト</a>
+              <p class='version_label'>
+                <i class="fa fa-check-circle"></i>
+                最新バージョン
+              </p>
+            </div>
+            <div class='logo'>
+              <a href='/'>
+                <img alt='HASH365' src='https://placehold.jp/192x80.png'>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <div class='container'>
       <div class='row'>
@@ -326,4 +361,10 @@
       </div>
     </div>
   </div>
-  <script>Admin.setPage("user");  Admin.init();</script>
+
+  <script>
+    Admin.setPage("user");
+    Admin.init();
+  </script>
+</body>
+</html>
