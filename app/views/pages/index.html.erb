@@ -130,25 +130,7 @@
       こちらをタップしてみてください。
     </p>
   </div>
-  <header id='main'>
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-12'>
-          <div class='header_link'>
-            <a class="settings" href="/pages/:id/set">設定</a>
-            <a class="logout" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
-            <p class='version_label'>
-              <i class="fa fa-check-circle"></i>最新バージョン</p>
-          </div>
-          <div class='logo'>
-            <a href='/'>
-              <img alt='HASH365' src='/img/new_lp/logo.svg'>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <%= render partial: "layouts/templete/header" %>
   <div class='container'>
       <div class='row'>
         <div class='col-md-12 user_main'>
@@ -216,7 +198,7 @@
                   </a>
                 </div>
                 <div class='button_wrap col-md-6 col-sm-6 col-xs-6'>
-                  <a class='btn btn-primary btn-sm btn-block btn-activity' href='/users/332529/activity'>
+                  <a class='btn btn-primary btn-sm btn-block btn-activity' href='/pages/:id/activity'>
                     アクションログ
                   </a>
                 </div>
