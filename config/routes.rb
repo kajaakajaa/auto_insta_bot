@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     get :privacy_policy, on: :collection
     get :asct, on: :collection
     get :line_contact, on: :collection
+    get :management, on: :member
+    get :activity, on: :member
   end
 end
