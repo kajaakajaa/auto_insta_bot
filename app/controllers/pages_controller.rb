@@ -5,11 +5,5 @@ class PagesController < ApplicationController
       redirect_to action: :top
     end
   end
-
-  def show
-  end
-
-  def top
-  end
   
 end
