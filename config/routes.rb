@@ -9,9 +9,14 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[destroy]
-  resources :pages, only: %i[index show] do
+  resources :pages, only: %i[index] do
     get :top, on: :collection
     get :set, on: :member
     get :history, on: :member
+    get :change, on: :member
+    get :user_policy, on: :collection
+    get :privacy_policy, on: :collection
+    get :asct, on: :collection
+    get :line_contact, on: :collection
   end
 end

@@ -130,9 +130,25 @@
       こちらをタップしてみてください。
     </p>
   </div>
-  
-  <%= render partial: "layouts/templete/header" %>
-
+  <header id='main'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <div class='header_link'>
+            <a class="settings" href="/pages/:id/set">設定</a>
+            <a class="logout" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
+            <p class='version_label'>
+              <i class="fa fa-check-circle"></i>最新バージョン</p>
+          </div>
+          <div class='logo'>
+            <a href='/'>
+              <img alt='HASH365' src='/img/new_lp/logo.svg'>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
   <div class='container'>
       <div class='row'>
         <div class='col-md-12 user_main'>
@@ -155,7 +171,7 @@
                     <div class='plan'>
                       無料お試し
                     </div>
-                    <a class='change_plan' href='/subscriptions'>
+                    <a class='change_plan' href='/pages/:id/change'>
                       変更
                     </a>
                     <div class='time'>
