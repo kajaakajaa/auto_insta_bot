@@ -1,3 +1,91 @@
+<head>
+  <meta charset='utf-8'>
+  <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' name='viewport'>
+  <meta content='ja_JP' property='og:locale'>
+  <meta content='website' property='og:type'>
+  <meta content='HASH365[ハッシュ365]' property='og:site_name'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' property='og:description'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' name='description'>
+  <meta content='' property='og:title'>
+
+  <% content_for :title do %>
+    HASH365[ハッシュ365]
+  <% end %>
+  <% content_for :css do %>
+    <%= stylesheet_link_tag "index" %>
+  <% end %>
+
+  <meta content='noindex, nofollow' name='robots'>
+  <%# <link rel="stylesheet" media="all" href="../css/index.css" data-turbolinks-track="false" /> %>
+  <script src="../js/index.js" data-turbolinks-track="false"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="IODHDxIRlvw/8nQLGDngQjggTZocriOaumnYHgzlvoqPLaklrMAI4UG1MRbU3GiH9NTtll8NNNTjq5hGl1HOOg==" />
+</head>
+<body>
+<header id='login'>
+<div class='logo'>
+<a href='/'>
+<img alt='HASH365' src='/img/new_lp/logo.svg'>
+</a>
+</div>
+</header>
+
+<div class="container">
+<div class="row">
+<div class="login center-block">
+<h1>ログイン</h1>
+
+<%# <form class="new_user" id="new_user" action="/users/sign_in?locale=ja" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="R5GXAZ84G3yd6tcJ2KvGxlax3q5vMhxwBN2cYqX9QzGolZzXgl9y0KIFo2us+L7nalb9iudqu0+2gfzjedSZSg==" /> %>
+<form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Ww3GfDNwVdTvRxBzA2j4mh6m64mB0XCZECvG3hKjD9GY7yFz0kRGEEeH+zaPR9WGzLhZzt+8ud7G9xXiSa58HQ==">
+
+      <div class="main">
+
+
+    <div id="flash_notice">ログアウトしました。</div>
+
+    <div class="form-group"><label for="user_email">メールアドレス</label><br />
+      <input class="form-control" autofocus="autofocus" type="text" value="" name="user[email]" id="user_email" /></div>
+
+    <div class="form-group"><label for="user_password">パスワード</label><br />
+      <input class="form-control" autocomplete="off" type="password" name="user[password]" id="user_password" /></div>
+
+        <div><input name="user[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" /> <label for="user_remember_me">ログイン状態を保持する</label></div>
+
+    <div class="btn-area"><input type="submit" name="commit" value="ログイン" class="btn btn-primary" data-disable-with="ログイン" />
+      <div class="clearfix"></div>
+
+        <%# <a href="/users/sign_up?locale=ja">会員登録する</a> %>
+        <a href="/users/sign_up">会員登録をする</a>
+
+    <%# <a href="/users/password/new?locale=ja">パスワードをお忘れの方はこちら</a> %>
+    <a href="/users/password/new">パスワードをお忘れの方はこちら</a>
+
+    <br />
+
+
+
+    </div>
+      </div>
+
+      <div class="clearfix"></div>
+</form>
+</div>
+</div>
+</div>
+
+<script>
+    Admin.setPage("landing");
+    Admin.init();
+</script>
+</body>
+
+
+
+
+<%
+=begin
+%>
+
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -24,3 +112,7 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+
+<%
+=end
+%>

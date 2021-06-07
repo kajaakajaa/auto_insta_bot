@@ -1,3 +1,140 @@
+<head>
+  <meta charset='utf-8'>
+  <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' name='viewport'>
+  <meta content='ja_JP' property='og:locale'>
+  <meta content='website' property='og:type'>
+  <meta content='HASH365[ハッシュ365]' property='og:site_name'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' property='og:description'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' name='description'>
+  <meta content='' property='og:title'>
+
+  <% content_for :title do %>
+    HASH365[ハッシュ365]
+  <% end %>
+  <% content_for :css do %>
+    <%= stylesheet_link_tag "index" %>
+  <% end %>
+
+  <meta content='noindex, nofollow' name='robots'>
+  <%# <link rel="stylesheet" media="all" href="../css/index.css" data-turbolinks-track="false" /> %>
+  <script src="../js/index.js" data-turbolinks-track="false"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="iWJfldEPUEBd9n7+VghyOWkGH2A8GbTi5e+Gm5gIdfEmrzG/b97OXSOxO+Oa7fr8pfK/bH+6o6y8LcbDA7wFQQ==" />
+</head>
+<body>
+  <header id='login'>
+  <div class='logo'>
+  <a href='/'>
+  <img alt='HASH365' src='/img/new_lp/logo.svg'>
+  </a>
+  </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+  <div class="login center-block">
+  <h1>会員登録</h1>
+
+  <p>本サービスにログインするためのメールアドレスとパスワードを登録してください。</p>
+  <%# <form class="new_user" id="new_user" action="/users?locale=ja" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="Iv60rORkIsdvBn9NMU1TVmbQGhCRdMBWdQk67j9cnfvG1IgaSniByTj6lnXYCqnxrufWY2M0YniuGInHVZEdCg==" /> %>
+  <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="CQj2JftV3o2xOxaz1a4y3m2KGYvG6bnNDgikI8+GLVTK6hEqGmHNSRn7/fZZgR/Cv5SrzJiEcIrY1HcflItemA==">
+    <%= render "users/shared/error_messages", resource: resource %>
+
+      <div class="main">
+
+
+        <div class="form-group"><label for="user_email">メールアドレス</label><br />
+          <input class="form-control" autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" /></div>
+
+        <div class="form-group"><label for="user_password">パスワード</label><br />
+          <input class="form-control" autocomplete="off" type="password" name="user[password]" id="user_password" /></div>
+
+        <div class="form-group"><label for="user_password_confirmation">パスワード(確認)</label><br />
+          <input class="form-control" autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation" /></div>
+        <input type="hidden" name="utm_source">
+        <input type="hidden" name="utm_medium">
+        <input type="hidden" name="utm_campaign">
+        <input type="hidden" name="utm_term">
+        <input type="hidden" name="utm_content">
+        <div class="btn-area">
+              <button class="btn btn-primary" type="submit" style="font-size: 14px;"><span style="display: block;font-size: 10px;">利用規約に同意して</span>登録する</button>
+              <div class="clearfix"></div>
+              <a href="/user_policy?locale=ja">利用規約</a>
+
+              <%# <a href="/users/sign_in?locale=ja">すでに会員の方はこちら</a> %>
+              <a href="/users/sign_in">すでに会員の方はこちら</a>
+
+
+
+      <br />
+
+
+
+        </div>
+      </div>
+      <div class="clearfix"></div>
+          <h2>
+            よくある質問
+          </h2>
+          <ul class='qa_list'>
+            <li>
+              <p class='question'>
+                無料お試し期間に有料プランを申し込んだら、残りの無料期間が無駄になりますか？
+              </p>
+              <p class='answer'>
+                いいえ、残りの無料期間は無駄になりません。早期に有料プランを契約頂いた場合は、残りの無料期間分も合わせて、サービスをご利用になれます。
+              </p>
+            </li>
+            <li>
+              <p class='question'>
+                無料お試し期間が終了するとどうなりますか？
+              </p>
+              <p class='answer'>
+                無料お試し期間が終了すると自動的にサービスの提供が停止いたします。お客様が自分自身で有料プランを購入しない限り、自動的に有料プランへ切り替わることはございませんので、ご安心ください。
+              </p>
+            </li>
+          </ul>
+
+  </form>
+  </div>
+  </div>
+
+  </div>
+  <script>
+      $(function() {
+          var utm_source = $.cookie('utm_source');
+          if (utm_source) {
+              $('input[name="utm_source"]').val(utm_source);
+          }
+          var utm_medium = $.cookie('utm_medium');
+          if (utm_medium) {
+              $('input[name="utm_medium"]').val(utm_medium);
+          }
+          var utm_campaign = $.cookie('utm_campaign');
+          if (utm_campaign) {
+              $('input[name="utm_campaign"]').val(utm_campaign);
+          }
+          var utm_term = $.cookie('utm_term');
+          if (utm_term) {
+              $('input[name="utm_term"]').val(utm_term);
+          }
+          var utm_content = $.cookie('utm_content');
+          if (utm_content) {
+              $('input[name="utm_content"]').val(utm_content);
+          }
+      })
+  </script>
+  <script>
+      Admin.setPage("landing");
+      Admin.init();
+  </script>
+</body>
+
+
+
+
+<%
+=begin%>
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -27,3 +164,7 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+
+
+<%
+=end%>
