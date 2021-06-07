@@ -11,5 +11,11 @@ class PagesController < ApplicationController
 
   def top
   end
+
+  def set
+  end
+
+  def history
+  end
   
 end

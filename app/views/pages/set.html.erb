@@ -1,0 +1,127 @@
+<head>
+  <meta charset='utf-8'>
+  <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' name='viewport'>
+  <meta content='ja_JP' property='og:locale'>
+  <meta content='website' property='og:type'>
+  <meta content='HASH365[ハッシュ365]' property='og:site_name'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' property='og:description'>
+  <meta content='HASH365（ハッシュ365）を使えば、誰でも簡単にフォロワーを増やすことができます。ハッシュタグを指定すると、HASH365があなたのインスタグラムを運用し、フォロワーと投稿へのいいねが増えていきます。' name='description'>
+  <meta content='' property='og:title'>
+
+  <% content_for :title do %>
+    HASH365[ハッシュ365]
+  <% end %>
+  <% content_for :css do %>
+    <%= stylesheet_link_tag "index" %>
+  <% end %>
+  <meta content='noindex, nofollow' name='robots'>
+
+  <%# <link rel="stylesheet" media="all" href="../css/index.css" data-turbolinks-track="false" /> %>
+  <script src="/assets/application-75f0079c8e098370b4cea2c402e86c3f91ebe8e91eb9a5483574c97458aac8ba.js" data-turbolinks-track="false"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="aTndKsI0lFX3oCaTdUC8aW1rgPWXXr5lBg8un0sY81RLcj5OGzFnr3Tqf3+U3w3f085NK1jJBL3ABiVURYNiLQ==" />
+</head>
+<body>
+  <header id='main'>
+  <div class='container'>
+  <div class='row'>
+  <div class='col-md-12'>
+  <div class='header_link'>
+  <a class="settings" href="/pages/:id/set">設定</a>
+  <a class="logout" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
+  <p class='version_label'>
+  <i class="fa fa-check-circle"></i>
+  最新バージョン
+  </p>
+  </div>
+  <div class='logo'>
+  <a href='/'>
+  <img alt='HASH365' src='/img/new_lp/logo.svg'>
+  </a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </header>
+
+  <div class='container'>
+  <div class='row'>
+  <div class='col-md-12 settings'>
+  <div class='pankuzu'>
+  <a href="/">ホーム</a> &raquo; 設定
+  </div>
+
+  <h1>
+  設定
+  </h1>
+  <h2>
+  インスタグラム アカウント
+  </h2>
+  <a class='btn btn-primary' href='/users/instagram/sign_in?migration=1'>
+  インスタグラム再接続
+  </a>
+  <h2>
+  セキュリティコード自動認証設定
+  </h2>
+  <a class='btn btn-default' href='/users/332529/settings/instagram_email'>
+  設定
+  </a>
+  <h2>
+  ご利用プラン
+  </h2>
+  <p>
+  現在のプラン:無料お試しプラン
+  </p>
+  <a class='btn btn-default' href='/pages/:id/history' data-method="get">
+  購入履歴
+  </a>
+  <h2>
+  解約
+  </h2>
+  <a class='btn btn-default' href='/users/332529/settings/cancel'>
+  解約
+  </a>
+  </div>
+  </div>
+  </div>
+  <footer id='footer'>
+  <div class='footer_inner fadein'>
+  <div class='logo fadein'>
+  <a href='/'>
+  <img alt='' src='https://placehold.jp/220x42.png'>
+  </a>
+  </div>
+  <ul class='foot_list fadein'>
+  <li>
+  <a href="/user_policy">利用規約</a>
+  </li>
+  <li>
+  <a href="/privacy_policy">プライバシーポリシー</a>
+  </li>
+  <li>
+  <a href="/asct">特定商取引法に基づく表示</a>
+  </li>
+  <li>
+  <a href="/line_contact">お問い合わせ</a>
+  </li>
+  </ul>
+  <ul class='foot_list fadein'>
+  <li>
+  <a href="/management">運営会社</a>
+  </li>
+  <li>
+  <a href='https://s3-ap-northeast-1.amazonaws.com/curation-web/otokake/upload/f78i2mjtg6p9vnrlhdbkq_ja' target='_blank'>
+  使い方マニュアル
+  </a>
+  </li>
+  </ul>
+  <p class='copy fadein'>Copyright © 2019 HASH365 All Rights Reserved</p>
+  </div>
+  </footer>
+
+
+  <script>
+    Admin.setPage('common');
+    Admin.init();
+  </script>
+</body>

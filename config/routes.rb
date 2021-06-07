@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[destroy]
   resources :pages, only: %i[index show] do
     get :top, on: :collection
+    get :set, on: :member
+    get :history, on: :member
   end
 end
