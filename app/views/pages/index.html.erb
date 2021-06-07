@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang='ja-JP'>
 <head>
   <meta charset='utf-8'>
   <meta content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' name='viewport'>
@@ -13,147 +11,129 @@
     HASH365[ハッシュ365]
   <% end %>
   <meta content='noindex, nofollow' name='robots'>
+  <% content_for :css do %>
+    <%= stylesheet_link_tag 'index' %>
+  <% end %>
 
-    <link rel="stylesheet" media="all" href="../css/index.css" data-turbolinks-track="false" />
-    <script src="../js/index.js" data-turbolinks-track="false"></script>
-    <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="RFcL6TbCyxD2221mpzn8P3wJWgTzqjC/8Z8zaLUNBh0Z3WssjoxRyZc+mDh6VrI8D1j0ppYg9NvgOQYqnW/qdw==" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="RFcL6TbCyxD2221mpzn8P3wJWgTzqjC/8Z8zaLUNBh0Z3WssjoxRyZc+mDh6VrI8D1j0ppYg9NvgOQYqnW/qdw==" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 </head>
 <body>
     <script crossorigin='anonymous' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-    <div class='notice_alert'>
-      <p>
-        <i class="fa fa-exclamation-circle"></i>
-        <span>
-          【重要】メールに送信される『不審なログイン』通知は弊社システムによるログインなので無視してください。不審と判断されるのはお客様の携帯以外から弊社が自動アクションを行うため代理でアクセスしたため、確認のための通知です。また、インスタのアプリ側で表示されるログイン確認は『自分が実行したものです』を必ず選択してください
-        </span>
-      </p>
-      <div class='unkownn_login_img'>
-        <img src='https://partner-setting.s3-ap-northeast-1.amazonaws.com/static/unknown_login_app.png'>
-        <img src='https://partner-setting.s3-ap-northeast-1.amazonaws.com/static/unknown_login_mail.png'>
-      </div>
+  <div class='notice_alert'>
+    <p>
+      <i class="fa fa-exclamation-circle"></i>
+      <span>
+        【重要】メールに送信される『不審なログイン』通知は弊社システムによるログインなので無視してください。不審と判断されるのはお客様の携帯以外から弊社が自動アクションを行うため代理でアクセスしたため、確認のための通知です。また、インスタのアプリ側で表示されるログイン確認は『自分が実行したものです』を必ず選択してください
+      </span>
+    </p>
+    <div class='unkownn_login_img'>
+      <img src='https://partner-setting.s3-ap-northeast-1.amazonaws.com/static/unknown_login_app.png'>
+      <img src='https://partner-setting.s3-ap-northeast-1.amazonaws.com/static/unknown_login_mail.png'>
     </div>
-    <div class='white_pay_modal'>
-      <div class='pay_appeal'>
+  </div>
+  <div class='white_pay_modal'>
+    <div class='pay_appeal'>
+      <h5>
+        無料お試し期間が終了しました。
+      </h5>
+      <p>
+        引き続きサービスをご利用いただくには
+        <br>
+        こちらからプランの変更を行ってください。
+      </p>
+      <a class='btn btn-appeal' href='/subscriptions?from=modal'>
+        プランを変更する
+      </a>
+      <button class='btn_pay_modal_close'>
+        今はしない
+      </button>
+      <div class='clearfix'></div>
+    </div>
+  </div>
+  <div class='white_recursion_modal'>
+    <div class='recursion_appeal'>
+      <h5>
+        有料プランの期限が間もなく終了します。
+      </h5>
+      <p>
+        引き続きサービスをご利用いただくには
+        <br>
+        こちらから自動更新の設定を行ってください。
+      </p>
+      <a class='btn btn-appeal' href='/subscriptions/settings/auto_charge?from=modal'>
+        自動更新の設定をする
+      </a>
+      <button class='btn_recursion_modal_close'>
+        今はしない
+      </button>
+      <div class='clearfix'></div>
+    </div>
+  </div>
+  <div class='white_modal'>
+    <div class='tutorial'>
+      <div class='step1'>
+        <div class='tutorial_header'>
+          <h4>
+            フォロワーを増やす手順
+          </h4>
+          <span class='current'>
+            STEP1
+          </span>
+          <span>
+            STEP2
+          </span>
+        </div>
         <h5>
-          無料お試し期間が終了しました。
+          インスタグラムのアカウントが非公開になっていませんか？
         </h5>
-        <p>
-          引き続きサービスをご利用いただくには
-          <br>
-          こちらからプランの変更を行ってください。
+        <p class='tutorial_desc'>
+          せっかく自動でいいねを残してもあなたのプロフィールが非公開になっていては、フォロワーは増えません。<br />非公開になっている場合は必ず解除しましょう。<br />
         </p>
-        <a class='btn btn-appeal' href='/subscriptions?from=modal'>
-          プランを変更する
-        </a>
-        <button class='btn_pay_modal_close'>
-          今はしない
+        <center>
+          <img src='/img/users/insta_tutorial_01_ja.png'>
+        </center>
+        <button class='btn btn-primary btn-block end_step1'>
+          次へ
         </button>
-        <div class='clearfix'></div>
       </div>
-    </div>
-    <div class='white_recursion_modal'>
-      <div class='recursion_appeal'>
+      <div class='step2 hide'>
+        <div class='tutorial_header'>
+          <h4>
+            フォロワーを増やす手順
+          </h4>
+          <span>
+            STEP1
+          </span>
+          <span class='current'>
+            STEP2
+          </span>
+        </div>
         <h5>
-          有料プランの期限が間もなく終了します。
+          まずはハッシュタグを登録しましょう
         </h5>
-        <p>
-          引き続きサービスをご利用いただくには
-          <br>
-          こちらから自動更新の設定を行ってください。
-        </p>
-        <a class='btn btn-appeal' href='/subscriptions/settings/auto_charge?from=modal'>
-          自動更新の設定をする
-        </a>
-        <button class='btn_recursion_modal_close'>
-          今はしない
+        <button class='btn btn-primary btn-block end_step2'>
+          ハッシュタグを登録する
         </button>
-        <div class='clearfix'></div>
       </div>
     </div>
-    <div class='white_modal'>
-      <div class='tutorial'>
-        <div class='step1'>
-          <div class='tutorial_header'>
-            <h4>
-              フォロワーを増やす手順
-            </h4>
-            <span class='current'>
-              STEP1
-            </span>
-            <span>
-              STEP2
-            </span>
-          </div>
-          <h5>
-            インスタグラムのアカウントが非公開になっていませんか？
-          </h5>
-          <p class='tutorial_desc'>
-            せっかく自動でいいねを残してもあなたのプロフィールが非公開になっていては、フォロワーは増えません。<br />非公開になっている場合は必ず解除しましょう。<br />
-          </p>
-          <center>
-            <img src='/img/users/insta_tutorial_01_ja.png'>
-          </center>
-          <button class='btn btn-primary btn-block end_step1'>
-            次へ
-          </button>
-        </div>
-        <div class='step2 hide'>
-          <div class='tutorial_header'>
-            <h4>
-              フォロワーを増やす手順
-            </h4>
-            <span>
-              STEP1
-            </span>
-            <span class='current'>
-              STEP2
-            </span>
-          </div>
-          <h5>
-            まずはハッシュタグを登録しましょう
-          </h5>
-          <button class='btn btn-primary btn-block end_step2'>
-            ハッシュタグを登録する
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class='auto_like_start hide' data-text='「アクションログ」をタップしてください。'>
-      <p>
-        自動いいねが始まりました
-      </p>
-      <p>
-        どんな写真にいいねしているかを確認するには
-      </p>
-      <p>
-        こちらをタップしてみてください。
-      </p>
-    </div>
-    <header id='main'>
-      <div class='container'>
-        <div class='row'>
-          <div class='col-md-12'>
-            <div class='header_link'>
-              <a class="settings" href="/users/332529/settings">設定</a>
-              <a class="logout" rel="nofollow" data-method="get" href="/users/sign_out">ログアウト</a>
-              <p class='version_label'>
-                <i class="fa fa-check-circle"></i>
-                最新バージョン
-              </p>
-            </div>
-            <div class='logo'>
-              <a href='/'>
-                <img alt='HASH365' src='https://placehold.jp/192x80.png'>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+  </div>
+  <div class='auto_like_start hide' data-text='「アクションログ」をタップしてください。'>
+    <p>
+      自動いいねが始まりました
+    </p>
+    <p>
+      どんな写真にいいねしているかを確認するには
+    </p>
+    <p>
+      こちらをタップしてみてください。
+    </p>
+  </div>
+  
+  <%= render partial: "layouts/templete/header" %>
 
-    <div class='container'>
+  <div class='container'>
       <div class='row'>
         <div class='col-md-12 user_main'>
           <div class='row upper'>
@@ -361,10 +341,11 @@
       </div>
     </div>
   </div>
+  
+  <%= render partial: "layouts/templete/footer" %>
 
   <script>
     Admin.setPage("user");
     Admin.init();
   </script>
 </body>
-</html>
