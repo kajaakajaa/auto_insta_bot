@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[destroy]
-  resources :pages, only: %i[index show]
+  resources :pages, only: %i[index show] do
+    get :top, on: :collection
+  end
 end
