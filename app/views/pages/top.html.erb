@@ -20,6 +20,9 @@
   <meta name="csrf-token" content="PnY85flhRs5d39em24+BBac+lK332l1f7esCMrAaM86Ru1LPR7DY0yOYkrsXagnAa8o0obR5ShG0KUJqK65Dfg==" />
 </head>
 <body>
+  <% content_for :javascript_includes do %>
+    <%#= javascript_include_tag "js/top.js" %>
+  <% end %>
   <script src='js/.js'></script>
   <script src='js/modernizr.js'></script>
   <script src='js/script.js'></script>

@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     get :line_contact, on: :collection
     get :management, on: :member
     get :activity, on: :member
+    get :analytics, on: :collection
   end
 end
