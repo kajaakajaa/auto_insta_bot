@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.notifications {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    height: 20px;
+    color: white;
+}

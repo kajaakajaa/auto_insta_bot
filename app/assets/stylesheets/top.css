@@ -1106,10 +1106,25 @@ color:#fff}
 @media screen and (-webkit-min-device-pixel-ratio: 0){footer{background:-webkit-linear-gradient(316deg, #2bb2ec, #00f3ea);
 background:-o-linear-gradient(316deg, #2bb2ec, #00f3ea);
 background:linear-gradient(134deg, #2bb2ec, #00f3ea)}}
-.fadein{-webkit-transition:.8s;
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fadein {
+  transition: 0.8s;
+  transform: translate(0, 60px);
+  animation: fadeOut 0.5s 1s both;
+}
+
+/* .fadein{-webkit-transition:.8s;
 -o-transition:.8s;
 transition:.8s !important;
-/* opacity:0; */  
+opacity:0;
 -ms-transform:translate(0, 60px);
 transform:translate(0, 60px);
 -webkit-transform:translate(0, 60px)}
@@ -1118,7 +1133,8 @@ transform:translate(0, 60px);
 
   -ms-transform:translate(0, 0);
 transform:translate(0, 0);
--webkit-transform:translate(0, 0)}.del_01{-webkit-transition-delay:0.2s !important;
+-webkit-transform:translate(0, 0)} */
+.del_01{-webkit-transition-delay:0.2s !important;
 -o-transition-delay:0.2s !important;
 transition-delay:0.2s !important}
 @media only screen and (max-width: 768px){.del_01{-webkit-transition-delay:0s !important;

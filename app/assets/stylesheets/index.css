@@ -1170,7 +1170,16 @@ a.badge:hover,a.badge:focus{color:#fff;text-decoration:none;cursor:pointer}
 .thumbnail>img,.thumbnail a>img{display:block;max-width:100%;height:auto;margin-right:auto;margin-left:auto}
 .thumbnail .caption{padding:9px;color:#333333}
 a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active{border-color:#337ab7}
-.alert{padding:15px;margin-bottom:20px;border:1px solid transparent;border-radius:4px}
+/* .alert{
+	border: 1px solid transparent;
+	border-radius: 4px;
+	display: flex;
+    justify-content: center;
+    background-color: black;
+    height: 20px;
+    color: white;	
+} */
+
 .alert h4{margin-top:0;color:inherit}
 .alert .alert-link{font-weight:bold}
 .alert>p,.alert>ul{margin-bottom:0}

@@ -21,5 +21,6 @@ Rails.application.routes.draw do
     get :management, on: :member
     get :activity, on: :member
     get :analytics, on: :collection
+    get :auth, on: :collection
   end
 end
