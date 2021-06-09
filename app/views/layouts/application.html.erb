@@ -8,8 +8,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= yield :css %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%#= javascript_include_tag "application" %>
-    <%= yield :javascript_includes %>
+    <%= yield :javascript_pack_tag %>
   </head>
 
   <body>
@@ -18,6 +17,7 @@
     <%= javascript_pack_tag "js/jquery.js" %>
     <%= javascript_pack_tag "js/modernizr.js" %>
     <%= javascript_pack_tag "js/script.js" %>
+    <%= render partial: "layouts/templete/notification" %>
     <%= yield %>
   </body>
 </html>
