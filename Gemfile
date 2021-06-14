@@ -9,6 +9,8 @@ gem "rails-i18n"
 gem "devise"
 gem 'devise-i18n'
 gem "instagram"
+# gem "instabot"
+gem "activesupport"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.7'
 # Use sqlite3 as the database for Active Record
