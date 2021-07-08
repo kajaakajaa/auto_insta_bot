@@ -5,5 +5,8 @@ class PagesController < ApplicationController
       redirect_to action: :top
     end
   end
+
+  def create
+  end
   
 end
