@@ -26,5 +26,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # The path used after confirmation.
   # def after_confirmation_path_for(resource_name, resource)
   #   super(resource_name, resource)
+  #   flash.now[:notice] = "インスタグラムへ自動的にログイン致します"
   # end
 end

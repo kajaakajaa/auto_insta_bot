@@ -102,15 +102,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="container">
   <div class="row">
 <div class="login center-block">
-
   <h1>インスタグラム ログイン</h1>
-
-      <form id="insta_auth_form" action="/users/instagram/auth" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="pT1l1AJHreOkXJKOVk81lAsk6prG6O/ueOMukyDJGKCYv6fiWo2RXokwF0vSj8eaAQrGn6FCVkT0p6YWaDYjYA==">
-
-          <div class="main">
-            <div class="group-line">
-            <div class="form-group insta_login_input group-insta-id"><label>インスタグラム ユーザーID</label><br>
-              <input type="text" name="insta_username" id="insta_username" class="form-control"></div>
+      <%# <form id="insta_auth_form" action="/pages/auth" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="pT1l1AJHreOkXJKOVk81lAsk6prG6O/ueOMukyDJGKCYv6fiWo2RXokwF0vSj8eaAQrGn6FCVkT0p6YWaDYjYA=="> %>
+      <%= form_with(url: auth_pages_path, method: "post", local: true) do |f| %>
+        <div class="main">
+          <div class="group-line">
+            <div class="form-group insta_login_input group-insta-id">
+              <%= f.label :insta_username, "インスタグラム ユーザーID" %>
+              <%= f.text_field "params[insta_username]", id: "insta_username", class: "form-control" %>
               <div class="error-field hide">
                   <p class="user_name_desc redcolor">インスタグラムのユーザーIDが間違っています。インスタグラムアプリでユーザーIDを確認してください。</p>
                   <img class="img_insta_profile" src="/img/users/insta_profile_fix_ja.png">
@@ -119,22 +118,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <p class="user_name_desc redcolor">メールアドレスを入力している</p>
               </div>
             </div>
-            <br>
-            <br>
-            <div class="group-line">
-            <div class="form-group insta_login_input"><label for="_____________">インスタグラム パスワード</label><br>
-              <input type="text" name="insta_password" id="insta_password" class="form-control"></div>
-            <a class="password_reset_link" href="https://www.instagram.com/accounts/password/reset/" target="_blank"><p class="user_name_desc">パスワードが分からない場合、こちらから変更が可能です。</p></a>
-            </div>
-            <div class="btn-area"><input type="submit" name="commit" value="アカウントを認証する" class="btn btn-primary" data-disable-with="アカウントを認証する"></div>
-            <a class="logout" rel="nofollow" data-method="delete" href="/agents/sign_out">ログアウト</a>
           </div>
-
-
-
-
-          <div class="clearfix"></div>
-</form></div>
+          <br>
+          <br>
+          <div class="group-line">
+          <div class="form-group insta_login_input">
+          <%= f.label :insta_password, "インスタグラム パスワード" %>
+          <%= f.text_field "params[insta_password]", id: "insta_password", class: "form-control" %>
+          <a class="password_reset_link" href="https://www.instagram.com/accounts/password/reset/" target="_blank"><p class="user_name_desc">パスワードが分からない場合、こちらから変更が可能です。</p></a>
+          </div>
+          <div class="btn-area">
+            <%# <input type="submit" name="commit" value="アカウントを認証する" class="btn btn-primary" data-disable-with="アカウントを認証する"> %>
+            <%= f.submit name: "commit", value: "アカウントを認証する", "data-disable-with": "アカウントを認証する", class: "btn btn-primary" %>
+          </div>
+          <a class="logout" rel="nofollow" data-method="delete" href="/agents/sign_out">ログアウト</a>
+        </div>
+        <div class="clearfix"></div>
+      <% end %>
+      <%# </form> %>
+  </div>
 </div>
 
 </div>
