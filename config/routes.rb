@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "pages#index"
+  root "users#top"
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     get "/users/sign_out" => "users/sessions#destroy"
   end
 
-  resources :users, only: %i[destroy]
-  resources :pages, only: %i[index create] do
+  resources :users, only: %i[index destroy] do
     get :top, on: :collection
     get :set, on: :member
     get :history, on: :member
