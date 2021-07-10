@@ -22,44 +22,49 @@
   <meta name="csrf-token" content="IODHDxIRlvw/8nQLGDngQjggTZocriOaumnYHgzlvoqPLaklrMAI4UG1MRbU3GiH9NTtll8NNNTjq5hGl1HOOg==" />
 </head>
 <body>
-<%# <header id='login'>
-  <div class='logo'>
-  <a href='/'>
-  <img alt='HASH365' src='/img/new_lp/logo.svg'>
-  </a>
-  </div>
-</header> %>
-<%= render partial: "layouts/templete/header" %>
+  <header id='main'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <div class='logo'>
+            <a href='/'>
+              <img alt='HASH365' src='https://hash365.net/img/new_lp/logo.svg'>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<div class="container">
-<div class="row">
-<div class="login center-block">
-<h1>ログイン</h1>
+  <div class="container">
+  <div class="row">
+  <div class="login center-block">
+  <h1>ログイン</h1>
 
-<%# <form class="new_user" id="new_user" action="/users/sign_in?locale=ja" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="R5GXAZ84G3yd6tcJ2KvGxlax3q5vMhxwBN2cYqX9QzGolZzXgl9y0KIFo2us+L7nalb9iudqu0+2gfzjedSZSg==" /> %>
-<form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Ww3GfDNwVdTvRxBzA2j4mh6m64mB0XCZECvG3hKjD9GY7yFz0kRGEEeH+zaPR9WGzLhZzt+8ud7G9xXiSa58HQ==">
+  <%# <form class="new_user" id="new_user" action="/users/sign_in?locale=ja" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="R5GXAZ84G3yd6tcJ2KvGxlax3q5vMhxwBN2cYqX9QzGolZzXgl9y0KIFo2us+L7nalb9iudqu0+2gfzjedSZSg==" /> %>
+  <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Ww3GfDNwVdTvRxBzA2j4mh6m64mB0XCZECvG3hKjD9GY7yFz0kRGEEeH+zaPR9WGzLhZzt+8ud7G9xXiSa58HQ==">
 
-      <div class="main">
+        <div class="main">
 
 
-    <div id="flash_notice">ログアウトしました。</div>
+      <div id="flash_notice">ログアウトしました。</div>
 
-    <div class="form-group"><label for="user_email">メールアドレス</label><br />
-      <input class="form-control" autofocus="autofocus" type="text" value="" name="user[email]" id="user_email" /></div>
+      <div class="form-group"><label for="user_email">メールアドレス</label><br />
+        <input class="form-control" autofocus="autofocus" type="text" value="" name="user[email]" id="user_email" /></div>
 
-    <div class="form-group"><label for="user_password">パスワード</label><br />
-      <input class="form-control" autocomplete="off" type="password" name="user[password]" id="user_password" /></div>
+      <div class="form-group"><label for="user_password">パスワード</label><br />
+        <input class="form-control" autocomplete="off" type="password" name="user[password]" id="user_password" /></div>
 
-        <div><input name="user[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" /> <label for="user_remember_me">ログイン状態を保持する</label></div>
+          <div><input name="user[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" /> <label for="user_remember_me">ログイン状態を保持する</label></div>
 
-    <div class="btn-area"><input type="submit" name="commit" value="ログイン" class="btn btn-primary" data-disable-with="ログイン" />
-      <div class="clearfix"></div>
+      <div class="btn-area"><input type="submit" name="commit" value="ログイン" class="btn btn-primary" data-disable-with="ログイン" />
+        <div class="clearfix"></div>
 
-        <%# <a href="/users/sign_up?locale=ja">会員登録する</a> %>
-        <a href="/users/sign_up">会員登録をする</a>
+          <%# <a href="/users/sign_up?locale=ja">会員登録する</a> %>
+          <a href="/users/sign_up">会員登録をする</a>
 
-    <%# <a href="/users/password/new?locale=ja">パスワードをお忘れの方はこちら</a> %>
-    <a href="/users/password/new">パスワードをお忘れの方はこちら</a>
+      <%# <a href="/users/password/new?locale=ja">パスワードをお忘れの方はこちら</a> %>
+      <a href="/users/password/new">パスワードをお忘れの方はこちら</a>
 
     <br />
 
