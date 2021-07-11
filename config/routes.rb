@@ -11,15 +11,15 @@ Rails.application.routes.draw do
   resources :users, only: %i[index destroy] do
     get :top, on: :collection
     get :set, on: :member
-    get :history, on: :member
+    get :history, on: :collection
     get :change, on: :member
     get :user_policy, on: :collection
     get :privacy_policy, on: :collection
     get :asct, on: :collection
     get :line_contact, on: :collection
-    get :management, on: :member
+    get :management, on: :collection
     get :activity, on: :member
     get :analytics, on: :collection
-    # get :auth, on: :collection
+    get :auth, on: :member
   end
 end
