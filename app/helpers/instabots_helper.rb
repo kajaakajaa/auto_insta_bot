@@ -1,0 +1,2 @@
+module InstabotsHelper
+end

@@ -14,7 +14,8 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    auth_user_path(resource)
+    # instabot_sign_in_users_path
+    instabots_path(resource)
   end
 
   # DELETE /resource/sign_out

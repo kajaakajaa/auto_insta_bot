@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     get :management, on: :collection
     get :activity, on: :member
     get :analytics, on: :collection
-    get :auth, on: :member
+    
+    # get "/instabot/sign_in" => "instabots#index", on: :member
+    # post "/instabot/sign_in" => "instabots#create", on: :member
   end
+  resources :instabots, only: %i[index create]
 end
