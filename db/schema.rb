@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_11_001854) do
 
   create_table "instabots", force: :cascade do |t|
     t.string "user_name", null: false
