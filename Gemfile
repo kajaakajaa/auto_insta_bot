@@ -8,6 +8,7 @@ gem "sprockets"
 gem "rails-i18n"
 gem "devise"
 gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem "instagram"
 # gem "instabot"
 gem "activesupport"
