@@ -34,7 +34,7 @@ module InstabotAction
           render action: :sign_in
         end
       else
-        flash.now[:error] = "からでの送信不可、又はパスワードは６文字以上で入力下さい。"
+        flash.now[:error] = "空での送信不可、又はパスワードは６文字以上で入力下さい。"
         render action: :sign_in
       end
     end
