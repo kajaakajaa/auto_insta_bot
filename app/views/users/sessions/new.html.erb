@@ -42,7 +42,7 @@
   <h1>ログイン</h1>
 
   <%# <form class="new_user" id="new_user" action="/users/sign_in?locale=ja" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="R5GXAZ84G3yd6tcJ2KvGxlax3q5vMhxwBN2cYqX9QzGolZzXgl9y0KIFo2us+L7nalb9iudqu0+2gfzjedSZSg==" /> %>
-  <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Ww3GfDNwVdTvRxBzA2j4mh6m64mB0XCZECvG3hKjD9GY7yFz0kRGEEeH+zaPR9WGzLhZzt+8ud7G9xXiSa58HQ==">
+  <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
         <div class="main">
 

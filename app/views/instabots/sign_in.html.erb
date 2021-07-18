@@ -101,44 +101,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="container">
   <div class="row">
-<div class="login center-block">
-  <h1>インスタグラム ログイン</h1>
-      <%# <form id="insta_auth_form" action="/pages/auth" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="pT1l1AJHreOkXJKOVk81lAsk6prG6O/ueOMukyDJGKCYv6fiWo2RXokwF0vSj8eaAQrGn6FCVkT0p6YWaDYjYA=="> %>
-      <%= form_with(model: @auth, method: "post", local: true) do |f| %>
-        <div class="main">
-          <div class="group-line">
-            <div class="form-group insta_login_input group-insta-id">
-              <%= f.label :user_name, "インスタグラム ユーザーID" %>
-              <%= f.text_field :user_name, class: "form-control" %>
-              <div class="error-field hide">
-                <p class="user_name_desc redcolor">インスタグラムのユーザーIDが間違っています。インスタグラムアプリでユーザーIDを確認してください。</p>
-                <img class="img_insta_profile" src="/img/users/insta_profile_fix_ja.png">
-                <p class="user_name_desc redcolor">(よくある間違え)</p>
-                <p class="user_name_desc redcolor">ユーザーネームを入力している</p>
-                <p class="user_name_desc redcolor">メールアドレスを入力している</p>
+    <div class="login center-block">
+      <h1>インスタグラム ログイン</h1>
+          <%# <form id="insta_auth_form" action="/pages/auth" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="pT1l1AJHreOkXJKOVk81lAsk6prG6O/ueOMukyDJGKCYv6fiWo2RXokwF0vSj8eaAQrGn6FCVkT0p6YWaDYjYA=="> %>
+          <%= form_with(model: @auth, local: true) do |f| %>
+            <div class="main">
+              <div class="group-line">
+                <div class="form-group insta_login_input group-insta-id">
+                  <%= f.label :user_name, "インスタグラム ユーザーID" %>
+                  <%= f.text_field :user_name, class: "form-control" %>
+                </div>
               </div>
+              <br>
+              <br>
+              <div class="group-line">
+              <div class="form-group insta_login_input">
+              <%= f.label :password, "インスタグラム パスワード" %>
+              <%= f.text_field :password, id: "insta_password", class: "form-control" %>
+              <a class="password_reset_link" href="https://www.instagram.com/accounts/password/reset/" target="_blank"><p class="user_name_desc">パスワードが分からない場合、こちらから変更が可能です。</p></a>
+              </div>
+              <div class="btn-area">
+                <%# <input type="submit" name="commit" value="アカウントを認証する" class="btn btn-primary" data-disable-with="アカウントを認証する"> %>
+                <%= f.submit name: "commit", value: "アカウントを認証する", "data-disable-with": "アカウントを認証する", class: "btn btn-primary" %>
+              </div>
+              <a class="logout" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
             </div>
-          </div>
-          <br>
-          <br>
-          <div class="group-line">
-          <div class="form-group insta_login_input">
-          <%= f.label :password, "インスタグラム パスワード" %>
-          <%= f.text_field :password, id: "insta_password", class: "form-control" %>
-          <a class="password_reset_link" href="https://www.instagram.com/accounts/password/reset/" target="_blank"><p class="user_name_desc">パスワードが分からない場合、こちらから変更が可能です。</p></a>
-          </div>
-          <div class="btn-area">
-            <%# <input type="submit" name="commit" value="アカウントを認証する" class="btn btn-primary" data-disable-with="アカウントを認証する"> %>
-            <%= f.submit name: "commit", value: "アカウントを認証する", "data-disable-with": "アカウントを認証する", class: "btn btn-primary" %>
-          </div>
-          <a class="logout" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
-        </div>
-        <div class="clearfix"></div>
-      <% end %>
-      <%# </form> %>
+            <div class="clearfix"></div>
+          <% end %>
+          <%# </form> %>
+      </div>
+    </div>
   </div>
-</div>
-
 </div>
 <%= render partial: "layouts/templete/footer" %>
 

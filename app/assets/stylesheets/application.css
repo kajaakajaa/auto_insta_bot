@@ -10,3 +10,5 @@
     height: 20px;
     color: white;
 }
+*= require_tree .
+*= require_self

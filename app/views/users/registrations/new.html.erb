@@ -37,7 +37,8 @@
 
   <p>本サービスにログインするためのメールアドレスとパスワードを登録してください。</p>
   <%# <form class="new_user" id="new_user" action="/users?locale=ja" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="Iv60rORkIsdvBn9NMU1TVmbQGhCRdMBWdQk67j9cnfvG1IgaSniByTj6lnXYCqnxrufWY2M0YniuGInHVZEdCg==" /> %>
-  <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="CQj2JftV3o2xOxaz1a4y3m2KGYvG6bnNDgikI8+GLVTK6hEqGmHNSRn7/fZZgR/Cv5SrzJiEcIrY1HcflItemA==">
+  <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%#= form_with(url: "/users", method: "post", class: "new_user", id: "new_user" local: true) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
       <div class="main">
@@ -93,7 +94,7 @@
               </p>
             </li>
           </ul>
-
+  <%# end %>
   </form>
   </div>
   </div>
