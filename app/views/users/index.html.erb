@@ -278,63 +278,72 @@
           <h2>
             自動アクション
           </h2>
+          <%# いいね、フォロー、アンフォロースイッチ %>
           <div class='auto_setting'>
-            <div class='control-group'>
-              <label for='auto_like'>
-                自動いいね
-                (※オンにするとインスタグラムから警告を受けたり、アクションをブロックされる可能性があります)
-              </label>
-              <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_like' type='checkbox'>-->
-              <div class="switch">
-                <label class="switch__label">
-                  <input type="checkbox" class="switch__input"/>
-                  <span class="switch__content"></span>
-                  <span class="switch__circle"></span>
+            <%= form_with(url: instabots_good_path, scope: :session, method: :post, class: "auto", local: true) do |f| %>
+              <div class='control-group'>
+                <label for='auto_like'>
+                  自動いいね
+                  (※オンにするとインスタグラムから警告を受けたり、アクションをブロックされる可能性があります)
+                </label>
+                <%# <input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_like' type='checkbox'>--> %>
+                <div class="switch">
+                  <label class="switch__label">
+                    <%# <input type="checkbox" class="switch__input"/> %>
+                    <%= f.check_box :good,{ class: "switch__input switch_iine" }, checked_value = "1",unchecked_value = "0" %>
+                    <span class="switch__content"></span>
+                    <span class="switch__circle"></span>
+                  </label>
+                </div>
+              </div>
+              <label class='auto_like_target_label'>一日あたりの自動いいね数設定</label>
+              <div class='auto_like_target_radio'>
+                <label>
+                  <input checked type='radio' value='50'>
+                  <%#= f.radio_button :auto_like_target, 50, checked: true %>
+                  50程度
+                </label>
+                <label>
+                  <input type='radio' value='100'>
+                  <%#= f.radio_button :auto_like_target, 100  %>
+                  100程度
+                </label>
+                <label>
+                  <input type='radio' value='400'>
+                  <%#= f.radio_button :auto_like_target, 400  %>
+                  100以上
                 </label>
               </div>
-            </div>
-            <label class='auto_like_target_label'>一日あたりの自動いいね数設定</label>
-            <div class='auto_like_target_radio'>
-              <label>
-                <input checked name='auto_like_target' type='radio' value='50'>
-                50程度
-              </label>
-              <label>
-                <input name='auto_like_target' type='radio' value='100'>
-                100程度
-              </label>
-              <label>
-                <input name='auto_like_target' type='radio' value='400'>
-                100以上
-              </label>
-            </div>
-            <div class='control-group'>
-              <label for='auto_follow'>
-                自動フォロー
-                (※オンにするとインスタグラムから警告を受けたり、アクションをブロックされる可能性があります)
-              </label>
-              <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_follow' type='checkbox'>-->
-              <div class="switch">
-                <label class="switch__label">
-                  <input type="checkbox" class="switch__input"/>
-                  <span class="switch__content"></span>
-                  <span class="switch__circle"></span>
+              <div class='control-group'>
+                <label for='auto_follow'>
+                  自動フォロー
+                  (※オンにするとインスタグラムから警告を受けたり、アクションをブロックされる可能性があります)
                 </label>
+                <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_follow' type='checkbox'>-->
+                <div class="switch">
+                  <label class="switch__label">
+                    <input type="checkbox" class="switch__input"/>
+                    <span class="switch__content"></span>
+                    <span class="switch__circle"></span>
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class='control-group'>
-              <label for='auto_unfollow'>
-                登録済みの自動フォロー解除
-              </label>
-              <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_unfollow' type='checkbox'>-->
-              <div class="switch">
-                <label class="switch__label">
-                  <input type="checkbox" class="switch__input"/>
-                  <span class="switch__content"></span>
-                <span class="switch__circle"></span>
-              </label>
-            </div>
+              <div class='control-group'>
+                <label for='auto_unfollow'>
+                  登録済みの自動フォロー解除
+                </label>
+                <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_unfollow' type='checkbox'>-->
+                <div class="switch">
+                  <label class="switch__label">
+                    <input type="checkbox" class="switch__input"/>
+                    <span class="switch__content"></span>
+                    <span class="switch__circle"></span>
+                  </label>
+                </div>
+              </div>
+            <% end %>
           </div>
+
         </div>
       </div>
     </div>

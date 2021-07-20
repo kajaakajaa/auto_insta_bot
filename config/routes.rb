@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "/users/sign_out" => "users/sessions#destroy"
   end
 
-  resources :users, only: %i[index destroy] do
+  resources :users, only: %i[index create destroy] do
     get :top, on: :collection
     get :set, on: :member
     get :history, on: :collection
@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   end
     get "instabots" => "instabots#sign_in"
     post "instabots" => "instabots#create"
+    post "instabots/good" => "instabots#good"
 end

@@ -104,7 +104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="login center-block">
       <h1>インスタグラム ログイン</h1>
           <%# <form id="insta_auth_form" action="/pages/auth" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="pT1l1AJHreOkXJKOVk81lAsk6prG6O/ueOMukyDJGKCYv6fiWo2RXokwF0vSj8eaAQrGn6FCVkT0p6YWaDYjYA=="> %>
-          <%= form_with(model: @auth, local: true) do |f| %>
+          <%= form_with(url: instabots_path, method: :post, scope: :session, local: true) do |f| %>
             <div class="main">
               <div class="group-line">
                 <div class="form-group insta_login_input group-insta-id">
