@@ -2,10 +2,10 @@ module InstabotAction
   extend ActiveSupport::Concern
   included do
     def insta_sign_in
-      # username = @auth.user_name
-      # password = @auth.password
       username = session[:instabot]["user_name"]
       password = session[:instabot]["password"]
+      key_word = @key_word
+      number = @number
 
       if password.length >= 6 && username.length >= 1
         Selenium::WebDriver::Chrome::Service
@@ -16,21 +16,17 @@ module InstabotAction
         client = Selenium::WebDriver::Remote::Http::Default.new
         client.read_timeout = 300
         @driver = Selenium::WebDriver.for :chrome, http_client: client, desired_capabilities: caps
-        @driver.navigate.refresh
         @driver.manage.timeouts.implicit_wait = 30
         @driver.navigate.to'https://www.instagram.com/accounts/login/?source=auth_switcher'
         @driver.find_element(:name, 'username').send_keys(username)
         @driver.find_element(:name, 'password').send_keys(password)
         @driver.find_element(:name, 'password').send_keys(:return)
-        sleep 5
-        
+        sleep 5        
         # 正しいワードかログイン判定
-        if @driver.current_url == "https://www.instagram.com/accounts/onetap/?next=%2F"
-          flash[:notice] = "インスタグラムへログイン致しました。"
+        if @driver.current_url == "https://www.instagram.com/accounts/onetap/?next=%2F" || "https://www.instagram.com/"
+          flash[:notice] = "インスタグラムへアカウント認証致しました。"
           redirect_to root_path
           sleep 5
-          # key_word = "oneokrock"
-          # good_hashtag(key_word, 3)
         else
           flash.now[:error] = "正しいユーザーID、又はパスワードを再入力下さい。"
           render action: :sign_in
@@ -39,11 +35,15 @@ module InstabotAction
         flash.now[:error] = "空での送信不可、又はパスワードは６文字以上で入力下さい。"
         render action: :sign_in
       end
+      if session[:instabot]["good"] == "true"
+        good_hashtag(key_word, number)
+      elsif session[:instabot]["good"] == false
+        @driver.quit
+      end
     end
-
-    def good_hashtag(key_word,number)
+    
+    def good_hashtag(key_word, number)
       encode_word = URI.encode_www_form_component(key_word)
-      binding.pry
       sleep 3
       @driver.navigate.to"https://www.instagram.com/explore/tags/#{encode_word}/"
       sleep 3
@@ -66,6 +66,7 @@ module InstabotAction
         @driver.execute_script("document.querySelector('a.coreSpriteRightPaginationArrow').click()")
         sleep 3
       }
+      @driver.quit
     end
 
     def follow
@@ -85,3 +86,4 @@ module InstabotAction
     end
   end
 end
+
