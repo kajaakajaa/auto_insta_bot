@@ -280,17 +280,17 @@
           </h2>
           <%# いいね、フォロー、アンフォロースイッチ %>
           <div class='auto_setting'>
-            <%= form_with(url: instabots_good_path, scope: :session, method: :post, class: "auto", local: true) do |f| %>
+            <%= form_with(model: @good, url: instabots_good_path, method: :post, class: "auto", local: true) do |f| %>
               <div class='control-group'>
                 <label for='auto_like'>
                   自動いいね
                   (※オンにするとインスタグラムから警告を受けたり、アクションをブロックされる可能性があります)
                 </label>
-                <%# <input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_like' type='checkbox'>--> %>
                 <div class="switch">
                   <label class="switch__label">
-                    <%# <input type="checkbox" class="switch__input"/> %>
-                    <%= f.check_box :good,{ class: "switch__input switch_iine" }, checked_value = "1",unchecked_value = "0" %>
+                  <%#= "checked='checked'" if @user.languages.include?(1) %>
+                    <%#= f.check_box :good,{ class: "switch__input switch_good" }, checked_value = "true", unchecked_value = "false" %>
+                    <input class="switch__input switch_good" <%#= "checked='checked " if @check.include?("true") %> type="checkbox" value="true" name="instabot[good]" id="instabot_good">
                     <span class="switch__content"></span>
                     <span class="switch__circle"></span>
                   </label>
@@ -322,7 +322,7 @@
                 <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_follow' type='checkbox'>-->
                 <div class="switch">
                   <label class="switch__label">
-                    <input type="checkbox" class="switch__input"/>
+                    <%#= f.check_box :follow, { class: "switch__input switch_follow" }, checked_value="true", unchecked_value="false" %>
                     <span class="switch__content"></span>
                     <span class="switch__circle"></span>
                   </label>

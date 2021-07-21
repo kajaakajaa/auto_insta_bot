@@ -3,6 +3,7 @@ class CreateInstabots < ActiveRecord::Migration[6.0]
     create_table :instabots do |t|
       t.string :user_name, null: false
       t.string :password, null: false
+      t.references :user, foreign_key: true, null: false
 
       t.timestamps
     end

@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "/users/sign_out" => "users/sessions#destroy"
   end
-
-  resources :users, only: %i[index create destroy] do
+  
+  resources :users, only: %i[index destroy] do
     get :top, on: :collection
     get :set, on: :member
     get :history, on: :collection
@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     get "instabots" => "instabots#sign_in"
     post "instabots" => "instabots#create"
     post "instabots/good" => "instabots#good"
+    post "instabots/follow" => "instabots#follow"
 end
