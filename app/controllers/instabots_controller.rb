@@ -14,14 +14,18 @@ class InstabotsController < ApplicationController
   # instabot_good_path POST
   def good
     # session[:instabot]["good"] = good_params[:good]
-    # @good = Instabot.new(good_params)
-    @good = current_user.instabots.build(good_params)
-    binding.pry
-    render root_path
+    @good = Instabot.new(good_params)
+    @instabot_rcd = Instabot.find_by(user_id: good_params[:user_id])
+    if !Instabot.exists?(user_id: good_params[:user_id])
+      @good.save
+    else
+      @instabot_rcd.update(good_params)
+      redirect_to root_path
+    end
     
-    @key_word = "oneokrock"
-    @number = 3
-    insta_sign_in
+    # @key_word = "oneokrock"
+    # @number = 3
+    # insta_sign_in
   end
 
   private
@@ -30,7 +34,7 @@ class InstabotsController < ApplicationController
   end
 
   def good_params
-    params.require(:instabot).permit(:good)
+    params.require(:instabot).permit(:good).merge(user_id: current_user.id)
   end
 end
 

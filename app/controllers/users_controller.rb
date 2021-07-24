@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @good = Instabot.new
-    # binding.pry
+    @check = Instabot.find_by(user_id: current_user.id)
   end
  
   def top
@@ -26,3 +26,4 @@ class UsersController < ApplicationController
   #   params.require(:user).permit(:good)
   # end
 end
+

@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   end
     get "instabots" => "instabots#sign_in"
     post "instabots" => "instabots#create"
-    post "instabots/good" => "instabots#good"
+    post "instabots/good" => "instabots#good", as: :instabots_good
     post "instabots/follow" => "instabots#follow"
 end
