@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :instabots
+  has_many :instabots, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable
