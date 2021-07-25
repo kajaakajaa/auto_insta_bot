@@ -280,7 +280,7 @@
           </h2>
           <%# いいね、フォロー、アンフォロースイッチ %>
           <div class='auto_setting'>
-            <%= form_with(model: @good, url: instabots_good_path, method: :post, class: "auto", local: true) do |f| %>
+            <%= form_with(model: @auto, url: instabots_auto_path, method: :post, class: "auto", local: true) do |f| %>
               <div class='control-group'>
                 <label for='auto_like'>
                   自動いいね
