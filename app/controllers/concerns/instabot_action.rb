@@ -36,7 +36,8 @@ module InstabotAction
         render action: :sign_in
         @driver.quit
       end
-      if current_user.instabots.exists?
+      if @instabot_rcd.present?
+        binding.pry
         if @instabot_rcd.good == true
           good_hashtag(key_word, number)
         else

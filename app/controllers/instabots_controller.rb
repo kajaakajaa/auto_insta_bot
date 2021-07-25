@@ -9,10 +9,11 @@ class InstabotsController < ApplicationController
   def create
     session[:instabot] = Instabot.new(instabot_params)
     @instabot_rcd = Instabot.find_by(user_id: current_user.id)
+    binding.pry
     insta_sign_in
   end
 
-  # instabot_good_path POST
+  # instabot_auto_path POST
   def auto
     @good = Instabot.new(good_params)
     @instabot_rcd = Instabot.find_by(user_id: good_params[:user_id])
