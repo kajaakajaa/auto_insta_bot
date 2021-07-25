@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :redirect, except: :top
 
   def index
-    @good = Instabot.new
+    @auto = Instabot.new
     #新規登録の場合（データベースにデータがまだ無い場合）
     if Instabot.exists?(user_id: current_user.id)
        @instabot_rcd = Instabot.find_by(user_id: current_user.id)
