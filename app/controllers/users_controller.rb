@@ -4,7 +4,14 @@ class UsersController < ApplicationController
 
   def index
     @good = Instabot.new
-    @check = Instabot.find_by(user_id: current_user.id)
+    #新規登録の場合（データベースにデータがまだ無い場合）
+    if Instabot.exists?(user_id: current_user.id)
+       @instabot_rcd = Instabot.find_by(user_id: current_user.id)
+       session[:instabot]["good"] = @instabot_rcd.good
+       @check = session[:instabot]["good"]
+    else
+       @check = session[:instabot]["good"]
+    end
   end
  
   def top
@@ -21,9 +28,5 @@ class UsersController < ApplicationController
     end
   end
 
-  # def good_params
-  #   binding.pry
-  #   params.require(:user).permit(:good)
-  # end
 end
 
