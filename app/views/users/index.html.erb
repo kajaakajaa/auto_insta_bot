@@ -289,7 +289,7 @@
                 <div class="switch">
                   <label class="switch__label">
                   <%#= "checked='checked'" if @user.languages.include?(1) %>
-                    <%= f.check_box :good,{ class: "switch__input switch_good", checked: @check.good }, checked_value = "true", unchecked_value = "false" %>
+                    <%= f.check_box :good,{ class: "switch__input switch_good", checked: @check}, checked_value = "true", unchecked_value = "false" %>
                     <%# <input class="switch__input switch_good" checked = "checked='checked " if @check.include?("true") type="checkbox" value="true" name="instabot[good]" id="instabot_good"> %>
                     <%# <input name="instabot[good]" type="hidden" value="false"> %>
                     <span class="switch__content"></span>

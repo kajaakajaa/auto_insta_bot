@@ -35,9 +35,9 @@ module InstabotAction
         flash.now[:error] = "空での送信不可、又はパスワードは６文字以上で入力下さい。"
         render action: :sign_in
       end
-      if session[:instabot]["good"] == "true"
+      if @instabot_rcd.good == true
         good_hashtag(key_word, number)
-      elsif session[:instabot]["good"] == false
+      else
         @driver.quit
       end
     end
@@ -66,7 +66,6 @@ module InstabotAction
         @driver.execute_script("document.querySelector('a.coreSpriteRightPaginationArrow').click()")
         sleep 3
       }
-      @driver.quit
     end
 
     def follow

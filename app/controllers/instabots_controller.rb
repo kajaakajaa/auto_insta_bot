@@ -20,12 +20,10 @@ class InstabotsController < ApplicationController
       @good.save
     else
       @instabot_rcd.update(good_params)
-      redirect_to root_path
     end
-    
-    # @key_word = "oneokrock"
-    # @number = 3
-    # insta_sign_in
+    @key_word = "oneokrock"
+    @number = 3
+    insta_sign_in
   end
 
   private
