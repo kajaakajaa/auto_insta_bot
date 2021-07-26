@@ -8,23 +8,21 @@ class InstabotsController < ApplicationController
   # instabots_path POST
   def create
     session[:instabot] = Instabot.new(instabot_params)
-    @instabot_rcd = Instabot.find_by(user_id: current_user.id)
-    binding.pry
     insta_sign_in
   end
 
   # instabot_auto_path POST
   def auto
-    @good = Instabot.new(good_params)
-    @instabot_rcd = Instabot.find_by(user_id: good_params[:user_id])
+    @auto = Instabot.new(good_params)
     if !Instabot.exists?(user_id: good_params[:user_id])
-      @good.save
+      @auto.save
     else
+      @instabot_rcd = Instabot.find_by(user_id: good_params[:user_id])
       @instabot_rcd.update(good_params)
     end
-    @key_word = "oneokrock"
-    @number = 3
-    insta_sign_in
+    key_word = "oneokrock"
+    number = 3
+    good_hashtag(key_word, number)
   end
 
   private
@@ -33,7 +31,7 @@ class InstabotsController < ApplicationController
   end
 
   def good_params
-    params.require(:instabot).permit(:good).merge(user_id: current_user.id)
+    params.require(:instabot).permit(:good, :follow).merge(user_id: current_user.id)
   end
 end
 
