@@ -8,5 +8,6 @@ class CreateInstabots < ActiveRecord::Migration[6.0]
       t.timestamps
     end
     add_column :instabots, :good, :boolean, default: false, null: false
+    add_column :instabots, :follow, :boolean, default: false, null: false
   end
 end

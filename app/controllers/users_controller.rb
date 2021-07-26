@@ -8,9 +8,12 @@ class UsersController < ApplicationController
     if Instabot.exists?(user_id: current_user.id)
        @instabot_rcd = Instabot.find_by(user_id: current_user.id)
        session[:instabot]["good"] = @instabot_rcd.good
-       @check = session[:instabot]["good"]
+       session[:instabot]["follow"] = @instabot_rcd.follow
+       @good_check = session[:instabot]["good"]
+       @follow_check = session[:instabot]["follow"]
     else
-       @check = session[:instabot]["good"]
+       @good_check = session[:instabot]["good"]
+       @follow_check = session[:instabot]["follow"]
     end
   end
  
