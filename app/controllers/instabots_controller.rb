@@ -24,6 +24,7 @@ class InstabotsController < ApplicationController
     key_word = "oneokrock"
     number = 3
     good_hashtag(key_word, number)
+    follow(key_word)
   end
 
   private
