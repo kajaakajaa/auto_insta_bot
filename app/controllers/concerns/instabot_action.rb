@@ -38,7 +38,7 @@ module InstabotAction
     end
     
     def good_hashtag(key_word, number)
-      if @instabot_rcd.good == true
+      if @rcd.good == true
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -66,7 +66,7 @@ module InstabotAction
         number.times{
           svg = @driver.find_element(:xpath, "//span[1]/button/div/span/*[name()='svg']")
           if svg.attribute("aria-label") == "いいね！" || svg.attribute("fill") == "#262626"
-            @driver.execute_script("document.querySelectorAll(`button.wpO6b`)[1].click()")
+          @driver.execute_script("document.querySelectorAll(`button.wpO6b`)[1].click()")
             sleep 3
           else
             puts "この記事には既にイイねが付いています"
@@ -80,8 +80,8 @@ module InstabotAction
       end
     end
 
-    def follow(key_word)
-      if @instabot_rcd.follow == true
+    def auto_follow(key_word)
+      if @rcd.follow == true
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         

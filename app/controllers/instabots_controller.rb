@@ -11,20 +11,38 @@ class InstabotsController < ApplicationController
     insta_sign_in
   end
 
-  # instabot_auto_path POST
-  def auto
-    @auto = Instabot.new(auto_params)
-    rcd = Instabot.find_by(user_id: auto_params[:user_id])
-    if !Instabot.exists?(user_id: auto_params[:user_id])
-      @auto.save
+  # instabot_good_path POST
+  def good
+    binding.pry
+    if !Instabot.exists?(user_id: current_user.id)
+      @rcd = Instabot.new
+      @rcd.good = params[:instabot][:good]
+      @rcd.user_id = current_user.id
+      @rcd.save
     else
-      rcd.update(auto_params)
+      @rcd = Instabot.find_by(user_id: current_user.id)
+      @rcd.good = params[:instabot][:good]
+      @rcd.update(auto_params)
     end
-    @instabot_rcd = Instabot.find_by(user_id: current_user.id)
     key_word = "oneokrock"
     number = 3
     good_hashtag(key_word, number)
-    follow(key_word)
+  end
+
+  def follow
+    binding.pry
+    if !Instabot.exists?(user_id: current_user.id)
+      @rcd = Instabot.new
+      @rcd.follow = params[:instabot][:follow]
+      @rcd.user_id = current_user.id
+      @rcd.save
+    else
+      @rcd = Instabot.find_by(user_id: current_user.id)
+      @rcd.follow = params[:instabot][:follow]
+      @rcd.update(auto_params)
+    end
+    key_word = "oneokrock"
+    auto_follow(key_word)
   end
 
   private
@@ -36,5 +54,3 @@ class InstabotsController < ApplicationController
     params.require(:instabot).permit(:good, :follow).merge(user_id: current_user.id)
   end
 end
-
-
