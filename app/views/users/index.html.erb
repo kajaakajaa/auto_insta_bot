@@ -280,7 +280,7 @@
           </h2>
           <%# いいね、フォロー、アンフォロースイッチ %>
           <div class='auto_setting'>
-            <%= form_with(model: @auto, url: "?", method: :post, class: "auto" ) do |f| %>
+            <%= form_with(model: @auto, url: instabots_auto_path, method: :post, class: "auto" ) do |f| %>
               <div class='control-group'>
                 <label for='auto_like'>
                   自動いいね
@@ -288,7 +288,7 @@
                 </label>
                 <div class="switch">
                   <label class="switch__label">
-                    <%= f.check_box :good,{ class: "switch__input switch_good", checked: @good_check, formaction: "/instabots/good" }, checked_value = "true", unchecked_value = "false" %>
+                    <%= f.check_box :good,{ class: "switch__input switch_auto", checked: @good_check }, checked_value = "true", unchecked_value = "false" %>
                     <span class="switch__content"></span>
                     <span class="switch__circle"></span>
                   </label>
@@ -320,7 +320,7 @@
                 <!--<input class='tiny-toggle' data-tt-size='monster' data-tt-type='toggle' id='auto_follow' type='checkbox'>-->
                 <div class="switch">
                   <label class="switch__label">
-                    <%= f.check_box :follow, { class: "switch__input switch_follow", checked: @follow_check, "data-action": "/instabots/follow" }, checked_value="true", unchecked_value="false" %>
+                    <%= f.check_box :follow, { class: "switch__input switch_auto", checked: @follow_check }, checked_value="true", unchecked_value="false" %>
                     <span class="switch__content"></span>
                     <span class="switch__circle"></span>
                   </label>

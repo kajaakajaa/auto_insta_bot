@@ -11,38 +11,48 @@ class InstabotsController < ApplicationController
     insta_sign_in
   end
 
-  # instabot_good_path POST
-  def good
-    binding.pry
-    if !Instabot.exists?(user_id: current_user.id)
-      @rcd = Instabot.new
-      @rcd.good = params[:instabot][:good]
-      @rcd.user_id = current_user.id
-      @rcd.save
-    else
-      @rcd = Instabot.find_by(user_id: current_user.id)
-      @rcd.good = params[:instabot][:good]
-      @rcd.update(auto_params)
-    end
+  # instabot_auto_path POST
+  def auto
     key_word = "oneokrock"
     number = 3
-    good_hashtag(key_word, number)
-  end
+    #いいねの自動化処理
+      #初めての'on'時
+    if !Instabot.exists?(user_id: current_user.id)
+      @rcd = Instabot.new
+      @rcd.good = params[:instabot][:good]
+      @rcd.user_id = current_user.id
+      @rcd.save
+      good_hashtag(key_word, number)
+    else #更新時
+      @rcd = Instabot.find_by(user_id: current_user.id)
+      if @rcd.good.to_s != params[:instabot][:good]
+        @rcd.good = params[:instabot][:good]
+        @rcd.update(auto_params)
 
-  def follow
-    binding.pry
+        good_hashtag(key_word, number)
+      else
+        puts "自動いいねは既に'#{@rcd.good}'です"
+      end
+    end
+    #フォロー自動化処理
+      #初めての'on'時
     if !Instabot.exists?(user_id: current_user.id)
       @rcd = Instabot.new
       @rcd.follow = params[:instabot][:follow]
       @rcd.user_id = current_user.id
       @rcd.save
-    else
+      auto_follow(key_word)
+    else #更新時
       @rcd = Instabot.find_by(user_id: current_user.id)
-      @rcd.follow = params[:instabot][:follow]
-      @rcd.update(auto_params)
+      if @rcd.follow.to_s != params[:instabot][:follow]
+        @rcd.follow = params[:instabot][:follow]
+        @rcd.update(auto_params)
+
+        auto_follow(key_word)
+      else
+        puts "自動フォローは既に'#{@rcd.follow}'です"
+      end
     end
-    key_word = "oneokrock"
-    auto_follow(key_word)
   end
 
   private
