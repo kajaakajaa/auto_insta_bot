@@ -76,7 +76,7 @@ module InstabotAction
           sleep 3
         }
       else
-        puts "いいね check_box_はoffです"
+        puts "いいねを'#{@rcd.good}'にしました"
       end
     end
 
@@ -110,7 +110,7 @@ module InstabotAction
           puts "このタグは既にフォロー済みです"
         end
       else
-        puts "フォロー check_box_はoffです"
+        puts "フォローを'#{@rcd.follow}'にしました"
       end
     end
 
