@@ -57,6 +57,30 @@ class InstabotsController < ApplicationController
         puts "自動フォローは既に'#{@rcd.follow}'です"
       end
     end
+    #アンフォロー自動化処理
+      #初めての'on'時
+    if !Instabot.exists?(user_id: current_user.id)
+      @rcd = Instabot.new
+      @rcd.unfollow = params[:instabot][:unfollow]
+      @rcd.user_id = current_user.id
+      @rcd.save
+      auto_unfollow(key_word)
+    else #更新時
+      @rcd = Instabot.find_by(user_id: current_user.id)
+      if @rcd.unfollow.to_s != params[:instabot][:unfollow]
+        @rcd.unfollow = params[:instabot][:unfollow]
+        @rcd.update(auto_params)
+
+        auto_unfollow(key_word)
+      else
+        puts "自動フォローは既に'#{@rcd.unfollow}'です"
+      end
+    end
+  end
+
+  def hashtag
+    binding.pry
+    hashtag = params[:instabot][:hashtag]
   end
 
   private

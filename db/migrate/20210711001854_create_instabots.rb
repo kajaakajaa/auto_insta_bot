@@ -9,5 +9,7 @@ class CreateInstabots < ActiveRecord::Migration[6.0]
     end
     add_column :instabots, :good, :boolean, default: false, null: false
     add_column :instabots, :follow, :boolean, default: false, null: false
+    add_column :instabots, :unfollow, :boolean, default: false, null: false
+    # add_column :instabots, :hashtag, :string まだrails db:migrateしてない
   end
 end
