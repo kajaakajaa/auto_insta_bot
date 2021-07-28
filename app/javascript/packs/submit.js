@@ -1,34 +1,9 @@
-// $(() => {
-//   // いいねon時で自動化発動
-//   var good = document.querySelector(".switch_auto");
-//   var auto = document.querySelector(".auto"); //formタグ
-//   // フォローon時で自動化発動
-//   var follow = document.querySelector(".switch_follow");
-
-//   good.addEventListener("click", () => {
-//     // console.log(good.checked);
-//     if(good.checked == true) {
-//       auto.submit();
-//     }else{
-//       console.log("あらんど");
-//     }
-//   })
-
-//   follow.addEventListener("click", () => {
-//     if(follow.checked == true) {
-//       auto.submit();
-//     }else{
-//       console.log("あらんどぉんでぃ！");
-//     }
-//   });
-// });
-
-
-
+// jquery ajax
 $(() => {
-  $(".switch_good").click(function(){
+  $(".switch_auto").click(function(){
     $.ajax({
-      url: "http://localhost:3000/instabots/good",
+      url: "http://localhost:3000/instabots/auto",
+
       type: "post",
       // formのクラスのパラメーターをdataの値に取る
       data: $(".auto").serialize(),
@@ -40,7 +15,7 @@ $(() => {
       console.log("失敗");
         // alert("error");
     })
-    good = document.querySelector(".switch_good");
+    good = document.querySelector(".switch_auto");
     if(good.checked == true) {
       console.log("on");
     }else{
@@ -50,27 +25,34 @@ $(() => {
 });
 
 
-$(() => {
-  $(".switch_follow").click(function(){
-    $.ajax({
-      url: "http://localhost:3000/instabots/follow",
-      type: "post",
-      // formのクラスのパラメーターをdataの値に取る
-      data: $(".auto").serialize(),
-      datatype: "html",
-    }).done(function(data) {
-      console.log("ajax送信成功");
-        // alert("ok");
-    }).fail(function(data) {
-      console.log("失敗");
-        // alert("error");
-    })
-    good = document.querySelector(".switch_follow");
-    if(good.checked == true) {
-      console.log("on");
-    }else{
-      console.log("off");
-    }
-  });
+// XMLHttpRequest ajax
+// const インスタンス名 = new XMLHttpRequest();
+
+// インスタンス名.open( 'POST', 送信先 );
+// インスタンス名.setRequestHeader( 'content-type', 'application/x-www-form-urlencoded;charset=UTF-8' );
+// インスタンス名.send( 'パラメータ=値' );
+
+// インスタンス名.onreadystatechange = function() {
+//   if( インスタンス名.readyState === 4 && インスタンス名.status === 200 ) {
+//     //エラーを出さずに通信が完了した時の処理。例↓
+//     console.log( インスタンス名.responseText );
+//   }
+// }
+
+const xhr = new XMLHttpRequest();
+xhr.open( "POST", "http://localhost:3000/instabots/hashtag" );
+xhr.setRequestHeader( "content-type", "application/x-www-form-urlencoded;charset=UTF-8" );
+
+var set_hash = document.querySelector(".set_hash");
+var submit_hash = document.querySelector("#submit_hash");
+const request = set_hash.name
+set_hash.addEventListener("click", () => {
+  xhr.send(request);
 });
+
+xhr.onreadystatechange = function() {
+  if(xhr.readyState === 4 && xhr.status === 200 ) {
+    console.log("xmlhttp送信成功");
+  }
+}
 
