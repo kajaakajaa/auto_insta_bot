@@ -3,6 +3,7 @@ $(() => {
   $(".switch_auto").click(function(){
     $.ajax({
       url: "http://localhost:3000/instabots/auto",
+
       type: "post",
       // formのクラスのパラメーターをdataの値に取る
       data: $(".auto").serialize(),
