@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     get "instabots" => "instabots#sign_in"
     post "instabots" => "instabots#create"
     post "instabots/auto" => "instabots#auto", as: :instabots_auto
+    post "instabots/hashtag" => "instabots#hashtag", as: :instabots_hashtag
 end

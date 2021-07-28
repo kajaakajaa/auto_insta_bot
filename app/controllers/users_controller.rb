@@ -7,13 +7,18 @@ class UsersController < ApplicationController
     #新規登録の場合（データベースにデータがまだ無い場合）
     if Instabot.exists?(user_id: current_user.id)
        @instabot_rcd = Instabot.find_by(user_id: current_user.id)
+       
        session[:instabot]["good"] = @instabot_rcd.good
        session[:instabot]["follow"] = @instabot_rcd.follow
+       session[:instabot]["unfollow"] = @instabot_rcd.unfollow
+
        @good_check = session[:instabot]["good"]
        @follow_check = session[:instabot]["follow"]
+       @unfollow_check = session[:instabot]["unfollow"]
     else
        @good_check = session[:instabot]["good"]
        @follow_check = session[:instabot]["follow"]
+       @unfollow_check = session[:instabot]["unfollow"]
     end
   end
  
