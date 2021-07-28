@@ -19,10 +19,14 @@ class InstabotsController < ApplicationController
       #初めての'on'時
     if !Instabot.exists?(user_id: current_user.id)
       @rcd = Instabot.new
-      @rcd.good = params[:instabot][:good]
-      @rcd.user_id = current_user.id
-      @rcd.save
-      good_hashtag(key_word, number)
+      if @rcd.good.to_s != params[:instabot][:good]
+        @rcd.good = params[:instabot][:good]
+        @rcd.user_id = current_user.id
+        @rcd.save
+        good_hashtag(key_word, number)
+      else
+        puts "自動いいねは既に'#{@rcd.good}'です"
+      end
     else #更新時
       @rcd = Instabot.find_by(user_id: current_user.id)
       if @rcd.good.to_s != params[:instabot][:good]
