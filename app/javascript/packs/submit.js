@@ -14,6 +14,22 @@ $(() => {
       console.log("失敗");
     })
   });
+
+  $("#hashsend").click(() => {
+    $("#hashform").submit((e) => {
+      e.preventDefault(e);
+      $.ajax({
+        url: "http://localhost:3000/instabots/hashtag",
+        type: "post",
+        data: $("#hashform").serialize(),
+        datatype: "html",
+      }).done((data) => {
+        console.log("hash_tag送信成功");
+      }).fail((data) => {
+        console.log("失敗");
+      })
+    });
+  });
 });
 
 
@@ -30,4 +46,3 @@ $(() => {
 //     console.log( インスタンス名.responseText );
 //   }
 // }
-

@@ -215,14 +215,19 @@
                   フォローして欲しいユーザーが投稿しそうなハッシュタグを登録しましょう。
                 </p>
                 <%# ハッシュタグの入力 %>
-                <div class="control-group">
-                  <div class="selectize-input items not-full">
-                    <input class="set_hash" name=instabot[hash] type="text" autocomplete="on" placeholder="追加したいタグ名を入力してください" style="width: 224px; opacity: 1; position: relative; left: 0px;">
-                  </div>
+                <%# <div class="control-group"> %>
+                  <%# <div class="selectize-input items not-full"> %>
+                    <%= form_with(model: @auto, url: instabots_hashtag_path, id: :hashform, method: :post ) do |f| %>
+                      <%# <input class="set_hash" name=instabot[hash] type="text" autocomplete="on" placeholder="追加したいタグ名を入力してください" style="width: 224px; opacity: 1; position: relative; left: 0px;"> %>
+                      <%= f.text_field :hashtag, autocomplete: :on, placeholder: "追加したいタグ名を入力してください", style: "width:  31.3vw; height: 4.1vw; opacity: 1; position: relative; left: 0px; text-align: center;" %>
+                      <%= f.submit "送信", id: :hashsend, style: "display: none;" %>
+                      <%# <input type="submit" id="submit_hash"> %>
+                    <% end %>
+                  <%# </div> %>
                   <div class="selectize-dropdown single tag_input" style="display: none; width: 325px; top: 44px; left: 0px; visibility: visible;">
                     <div class="selectize-dropdown-content"></div>
                   </div>
-                </div>
+                <%# </div> %>
 
                 <div class='related_hashtags'>
                   <span class='title'>
