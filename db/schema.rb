@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_221340) do
     t.boolean "good", default: false, null: false
     t.boolean "follow", default: false, null: false
     t.boolean "unfollow", default: false, null: false
+    t.string "hashtag"
     t.index ["user_id"], name: "index_instabots_on_user_id"
   end
 

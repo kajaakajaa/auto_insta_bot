@@ -2,9 +2,6 @@ class InstabotsController < ApplicationController
   include InstabotAction
   include AjaxHelper
 
-  # instabots_path GET
-  def sign_in
-  end
   
   # instabots_path POST
   def create
@@ -93,9 +90,5 @@ class InstabotsController < ApplicationController
   private
   def instabot_params
     params.require(:session).permit(:user_name, :password)
-  end
-
-  def auto_params
-    params.require(:instabot).permit(:good, :follow).merge(user_id: current_user.id)
   end
 end
