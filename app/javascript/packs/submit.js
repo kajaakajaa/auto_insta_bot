@@ -17,7 +17,7 @@ $(() => {
 
   $("#hashsend").click(() => {
     $("#hashform").submit((e) => {
-      e.preventDefault(e);
+      e.preventDefault();
       $.ajax({
         url: "http://localhost:3000/instabots/hashtag",
         type: "post",
