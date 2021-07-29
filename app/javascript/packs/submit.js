@@ -9,6 +9,7 @@ $(() => {
       datatype: "html",
     }).done(function(data) {
       console.log("ajax送信成功");
+      console.log($(".auto").serializeArray());
     }).fail(function(data) {
       console.log("失敗");
     })
@@ -29,21 +30,4 @@ $(() => {
 //     console.log( インスタンス名.responseText );
 //   }
 // }
-
-const xhr = new XMLHttpRequest();
-xhr.open( "POST", "http://localhost:3000/instabots/hashtag" );
-xhr.setRequestHeader( "content-type", "application/x-www-form-urlencoded;charset=UTF-8" );
-
-var set_hash = document.querySelector(".set_hash");
-var submit_hash = document.querySelector("#submit_hash");
-const request = set_hash.name
-set_hash.addEventListener("click", () => {
-  xhr.send(request);
-});
-
-xhr.onreadystatechange = function() {
-  if(xhr.readyState === 4 && xhr.status === 200 ) {
-    console.log("xmlhttp送信成功");
-  }
-}
 
