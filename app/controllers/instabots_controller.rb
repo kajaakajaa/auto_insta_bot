@@ -1,5 +1,6 @@
 class InstabotsController < ApplicationController
   include InstabotAction
+  include AjaxHelper
 
   # instabots_path GET
   def sign_in
@@ -79,7 +80,7 @@ class InstabotsController < ApplicationController
 
         auto_unfollow(key_word)
       else
-        puts "自動フォローは既に'#{@rcd.unfollow}'です"
+        puts "自動アンフォローは既に'#{@rcd.unfollow}'です"
       end
     end
   end

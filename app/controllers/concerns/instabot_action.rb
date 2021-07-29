@@ -110,8 +110,11 @@ module InstabotAction
           puts "このタグは既にフォロー済みです"
         end
       elsif @rcd.follow == true && @rcd.unfollow == true
-        flash.now[:error] = "'登録ずみの自動フォロー'をoffにしてから再度操作して下さい。"
-      elsif @rcd.follow == false && @rcd.unfollow == true
+        flash[:error] = "'登録ずみの自動アンフォロー'をoffにしてから再度操作して下さい。"
+        respond_to do |format|
+          format.js { render ajax_redirect_to(root_path) }
+        end
+      else
         puts "フォローは'#{@rcd.follow}'です"
       end
     end
@@ -146,11 +149,12 @@ module InstabotAction
           puts "このタグは既にフォロー解除済みです"
         end
       elsif @rcd.unfollow == true && @rcd.follow == true
-        flash.now[:error] = "'登録ずみの自動フォロー'をoffにしてから再度操作して下さい。"
-      elsif @rcd.unfollow == false && @rcd.follow == true
-        puts "アンフォロー操作は既に'#{@rcd.unfollow}'です"
+        flash[:error] = "'自動フォロー'をoffにしてから再度操作して下さい。"
+        respond_to do |format|
+          format.js { render ajax_redirect_to(root_path) }
+        end
       else
-        puts "アンフォローを'#{@rcd.unfollow}'にしました。"
+        puts "アンフォローは'#{@rcd.unfollow}'です"
       end
     end
   end

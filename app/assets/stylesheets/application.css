@@ -4,11 +4,16 @@
 }
 
 .notifications {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     background-color: black;
     height: 20px;
     color: white;
+    z-index: 3;
 }
 *= require_tree .
 *= require_self
