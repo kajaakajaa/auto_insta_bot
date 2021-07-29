@@ -148,9 +148,9 @@ module InstabotAction
       elsif @rcd.unfollow == true && @rcd.follow == true
         flash.now[:error] = "'登録ずみの自動フォロー'をoffにしてから再度操作して下さい。"
       elsif @rcd.unfollow == false && @rcd.follow == true
-        puts "アンフォロー操作は既に'#{@rcd.follow}'です"
+        puts "アンフォロー操作は既に'#{@rcd.unfollow}'です"
       else
-        puts "アンフォローを'#{@rcd.follow}'にしました。"
+        puts "アンフォローを'#{@rcd.unfollow}'にしました。"
       end
     end
   end
