@@ -3,24 +3,15 @@ $(() => {
   $(".switch_auto").click(function(){
     $.ajax({
       url: "http://localhost:3000/instabots/auto",
-
       type: "post",
-      // formのクラスのパラメーターをdataの値に取る
+      // formのパラメーターをdataの値に取る
       data: $(".auto").serialize(),
       datatype: "html",
     }).done(function(data) {
       console.log("ajax送信成功");
-        // alert("ok");
     }).fail(function(data) {
       console.log("失敗");
-        // alert("error");
     })
-    good = document.querySelector(".switch_auto");
-    if(good.checked == true) {
-      console.log("on");
-    }else{
-      console.log("off");
-    }
   });
 });
 
