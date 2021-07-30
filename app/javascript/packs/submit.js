@@ -19,7 +19,7 @@ $(() => {
     $("#hashform").submit((e) => {
       e.preventDefault();
       $.ajax({
-        url: "http://localhost:3000/instabots/hashtag",
+        url: "http://localhost:3000/hashtags",
         type: "post",
         data: $("#hashform").serialize(),
         datatype: "html",

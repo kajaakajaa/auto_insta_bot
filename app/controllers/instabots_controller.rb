@@ -82,9 +82,10 @@ class InstabotsController < ApplicationController
     end
   end
 
+  # instabots_hashtag_path
   def hashtag
     binding.pry
-    hashtag = params[:instabot][:hashtag]
+    hashtag = params[:hashtag][:hashtag]
   end
 
   private
