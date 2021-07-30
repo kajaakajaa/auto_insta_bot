@@ -13,7 +13,7 @@ class InstabotsController < ApplicationController
   def auto
     key_word = "oneokrock"
     number = 3
-
+    
 
     #いいねの自動化処理
       #初めての'on'時
