@@ -28,6 +28,8 @@ $(() => {
       }).fail((data) => {
         console.log("失敗");
       })
+      var input_keyword = document.querySelector("#hashtag_hashtag");
+      console.log(input_keyword.value);
     });
   });
 });

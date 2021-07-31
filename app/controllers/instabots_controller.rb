@@ -58,7 +58,7 @@ class InstabotsController < ApplicationController
           follow_val = params[:instabot][:follow]
           @rcd.update_attribute(:follow, follow_val)
 
-          auto_follow(key_word, hash_rcds, hash_rcd)
+          auto_follow(key_word)
         else
           puts "自動フォローは既に'#{@rcd.follow}'です"
         end
@@ -79,7 +79,7 @@ class InstabotsController < ApplicationController
           unfollow_val = params[:instabot][:unfollow]
           @rcd.update_attribute(:unfollow, unfollow_val)
 
-          auto_unfollow(key_word, hash_rcds, hash_rcd)
+          auto_unfollow(key_word)
         else
           puts "自動アンフォローは既に'#{@rcd.unfollow}'です"
         end
