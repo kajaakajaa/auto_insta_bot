@@ -84,7 +84,7 @@ module InstabotAction
 
 
 
-    def auto_follow(key_word, hash_rcds, hash_rcd)
+    def auto_follow(key_word)
       if @rcd.follow == true && @rcd.unfollow == false
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
@@ -113,7 +113,7 @@ module InstabotAction
         rescue
           puts "このタグは既にフォロー済みです"
         end
-      elsif hash_rcd == hash_rcds[0] && @rcd.follow == true && @rcd.unfollow == true
+      elsif @rcd.follow == true && @rcd.unfollow == true
         flash[:error] = "'登録済みの自動アンフォロー'をoffにしてから再度操作して下さい。"
         @rcd.update_attribute(:follow, !@rcd.follow)
         respond_to do |format|
@@ -127,7 +127,7 @@ module InstabotAction
 
 
 
-    def auto_unfollow(key_word, hash_rcds, hash_rcd)
+    def auto_unfollow(key_word)
       if @rcd.unfollow == true && @rcd.follow == false
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
@@ -156,16 +156,15 @@ module InstabotAction
         rescue
           puts "このタグは既にフォロー解除済みです"
         end
-      elsif hash_rcd == hash_rcds[0] && @rcd.unfollow == true && @rcd.follow == true
+      elsif @rcd.unfollow == true && @rcd.follow == true
         flash[:error] = "'自動フォロー'をoffにしてから再度操作して下さい。"
         @rcd.update_attribute(:unfollow, !@rcd.unfollow)
         respond_to do |format|
           format.js { render ajax_redirect_to(root_path) }
           puts "アンフォローは'#{@rcd.unfollow}'です"
         end
-      elsif hash_rcd != hash_rcds[0] && @rcd.unfollow == true && @rcd.follow == true
-        @rcd.update_attribute(:unfollow, @rcd.unfollow)
       else
+        @rcd.update_attribute(:unfollow, !@rcd.unfollow)
         puts "アンフォローは'#{@rcd.unfollow}'です"
       end
     end
