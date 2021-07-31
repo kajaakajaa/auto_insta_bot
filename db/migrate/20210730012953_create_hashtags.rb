@@ -6,5 +6,6 @@ class CreateHashtags < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    change_column :hashtags, :hashtag, :string, null: false
   end
 end

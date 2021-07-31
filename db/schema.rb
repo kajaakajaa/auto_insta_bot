@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_07_30_012953) do
 
   create_table "hashtags", force: :cascade do |t|
-    t.string "hashtag"
+    t.string "hashtag", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
