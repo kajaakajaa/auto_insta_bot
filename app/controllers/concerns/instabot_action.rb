@@ -37,6 +37,8 @@ module InstabotAction
       end
     end
     
+
+    
     def good_hashtag(key_word, number)
       if @rcd.good == true
         username = session[:instabot]["user_name"]
@@ -80,7 +82,9 @@ module InstabotAction
       end
     end
 
-    def auto_follow(key_word)
+
+
+    def auto_follow(key_word, hash_rcds, hash_rcd)
       if @rcd.follow == true && @rcd.unfollow == false
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
@@ -109,18 +113,21 @@ module InstabotAction
         rescue
           puts "このタグは既にフォロー済みです"
         end
-      elsif @rcd.follow == true && @rcd.unfollow == true
+      elsif hash_rcd == hash_rcds[0] && @rcd.follow == true && @rcd.unfollow == true
         flash[:error] = "'登録済みの自動アンフォロー'をoffにしてから再度操作して下さい。"
         @rcd.update_attribute(:follow, !@rcd.follow)
         respond_to do |format|
           format.js { render ajax_redirect_to(root_path) }
         end
       else
+        @rcd.update_attribute(:user_id, !@rcd.follow)
         puts "フォローは'#{@rcd.follow}'です"
       end
     end
 
-    def auto_unfollow(key_word)
+
+
+    def auto_unfollow(key_word, hash_rcds, hash_rcd)
       if @rcd.unfollow == true && @rcd.follow == false
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
@@ -149,16 +156,20 @@ module InstabotAction
         rescue
           puts "このタグは既にフォロー解除済みです"
         end
-      elsif @rcd.unfollow == true && @rcd.follow == true
+      elsif hash_rcd == hash_rcds[0] && @rcd.unfollow == true && @rcd.follow == true
         flash[:error] = "'自動フォロー'をoffにしてから再度操作して下さい。"
         @rcd.update_attribute(:unfollow, !@rcd.unfollow)
         respond_to do |format|
           format.js { render ajax_redirect_to(root_path) }
+          puts "アンフォローは'#{@rcd.unfollow}'です"
         end
+      elsif hash_rcd != hash_rcds[0] && @rcd.unfollow == true && @rcd.follow == true
+        @rcd.update_attribute(:unfollow, @rcd.unfollow)
       else
         puts "アンフォローは'#{@rcd.unfollow}'です"
       end
     end
   end
 end
+
 
