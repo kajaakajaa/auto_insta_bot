@@ -11,85 +11,95 @@ class InstabotsController < ApplicationController
 
   # instabot_auto_path POST
   def auto
-    key_word = "oneokrock"
+    hash_rcds = Hashtag.where(user_id: current_user.id)
     number = 3
-    
+    hash_rcds.each do |hash_rcd|
+    key_word = hash_rcd.hashtag
+      if hash_rcd != hash_rcds[0]
+        break
+      end
 
-    #いいねの自動化処理
+      #いいねの自動化処理
       #初めての'on'時
-    if !Instabot.exists?(user_id: current_user.id)
-      @rcd = Instabot.new
-      if @rcd.good.to_s != params[:instabot][:good]
-        @rcd.good = params[:instabot][:good]
+      if !Instabot.exists?(user_id: current_user.id)
+        @rcd = Instabot.new
+        if @rcd.good.to_s != params[:instabot][:good]
+          @rcd.good = params[:instabot][:good]
+          @rcd.user_id = current_user.id
+          @rcd.save
+          good_hashtag(key_word, number)
+        else
+          puts "自動いいねは既に'#{@rcd.good}'です"
+        end
+      else #更新時
+        @rcd = Instabot.find_by(user_id: current_user.id)
+        if @rcd.good.to_s != params[:instabot][:good]
+          good_val = params[:instabot][:good]
+          @rcd.update_attribute(:good, good_val)
+
+          good_hashtag(key_word, number)
+        else
+          puts "自動いいねは既に'#{@rcd.good}'です"
+        end
+      end
+
+
+      #フォロー自動化処理
+        #初めての'on'時
+      if !Instabot.exists?(user_id: current_user.id)
+        @rcd = Instabot.new
+        @rcd.follow = params[:instabot][:follow]
         @rcd.user_id = current_user.id
         @rcd.save
-        good_hashtag(key_word, number)
-      else
-        puts "自動いいねは既に'#{@rcd.good}'です"
-      end
-    else #更新時
-      @rcd = Instabot.find_by(user_id: current_user.id)
-      if @rcd.good.to_s != params[:instabot][:good]
-        good_val = params[:instabot][:good]
-        @rcd.update_attribute(:good, good_val)
-
-        good_hashtag(key_word, number)
-      else
-        puts "自動いいねは既に'#{@rcd.good}'です"
-      end
-    end
-
-
-    #フォロー自動化処理
-      #初めての'on'時
-    if !Instabot.exists?(user_id: current_user.id)
-      @rcd = Instabot.new
-      @rcd.follow = params[:instabot][:follow]
-      @rcd.user_id = current_user.id
-      @rcd.save
-      auto_follow(key_word)
-    else #更新時
-      @rcd = Instabot.find_by(user_id: current_user.id)
-      if @rcd.follow.to_s != params[:instabot][:follow]
-        follow_val = params[:instabot][:follow]
-        @rcd.update_attribute(:follow, follow_val)
-
         auto_follow(key_word)
-      else
-        puts "自動フォローは既に'#{@rcd.follow}'です"
+      else #更新時
+        @rcd = Instabot.find_by(user_id: current_user.id)
+        if @rcd.follow.to_s != params[:instabot][:follow]
+          follow_val = params[:instabot][:follow]
+          @rcd.update_attribute(:follow, follow_val)
+
+          auto_follow(key_word, hash_rcds, hash_rcd)
+        else
+          puts "自動フォローは既に'#{@rcd.follow}'です"
+        end
       end
-    end
 
 
-    #アンフォロー自動化処理
-      #初めての'on'時
-    if !Instabot.exists?(user_id: current_user.id)
-      @rcd = Instabot.new
-      @rcd.unfollow = params[:instabot][:unfollow]
-      @rcd.user_id = current_user.id
-      @rcd.save
-      auto_unfollow(key_word)
-    else #更新時
-      @rcd = Instabot.find_by(user_id: current_user.id)
-      if @rcd.unfollow.to_s != params[:instabot][:unfollow]
-        unfollow_val = params[:instabot][:unfollow]
-        @rcd.update_attribute(:unfollow, unfollow_val)
-
+      #アンフォロー自動化処理
+        #初めての'on'時
+      if !Instabot.exists?(user_id: current_user.id)
+        @rcd = Instabot.new
+        @rcd.unfollow = params[:instabot][:unfollow]
+        @rcd.user_id = current_user.id
+        @rcd.save
         auto_unfollow(key_word)
-      else
-        puts "自動アンフォローは既に'#{@rcd.unfollow}'です"
+      else #更新時
+        @rcd = Instabot.find_by(user_id: current_user.id)
+        if @rcd.unfollow.to_s != params[:instabot][:unfollow]
+          unfollow_val = params[:instabot][:unfollow]
+          @rcd.update_attribute(:unfollow, unfollow_val)
+
+          auto_unfollow(key_word, hash_rcds, hash_rcd)
+        else
+          puts "自動アンフォローは既に'#{@rcd.unfollow}'です"
+        end
       end
     end
   end
 
-  # instabots_hashtag_path
+  # instabots_hashtag_path POST
   def hashtag
+    @hash_rcd = Hashtag.new(hashtag_params)
+    @hash_rcd.save
     binding.pry
-    hashtag = params[:hashtag][:hashtag]
   end
 
   private
   def instabot_params
     params.require(:session).permit(:user_name, :password)
+  end
+
+  def hashtag_params
+    params.require(:hashtag).permit(:hashtag).merge(user_id: current_user.id)
   end
 end
