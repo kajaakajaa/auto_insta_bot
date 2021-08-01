@@ -78,7 +78,7 @@ module InstabotAction
           sleep 3
         }
       else
-        puts "いいねを'#{@rcd.good}'にしました"
+        puts "いいねは'#{@rcd.good}'です。"
       end
     end
 
@@ -114,7 +114,7 @@ module InstabotAction
           puts "このタグは既にフォロー済みです"
         end
       else
-        puts "フォローは'#{@rcd.follow}'です"
+        puts "フォローは'#{@rcd.follow}'です。（裏）"
       end
     end
 
@@ -150,7 +150,7 @@ module InstabotAction
           puts "このタグは既にフォロー解除済みです"
         end
       else
-        puts "アンフォローは'#{@rcd.unfollow}'です"
+        puts "アンフォローは'#{@rcd.unfollow}'です。（裏）"
       end
     end
   end
