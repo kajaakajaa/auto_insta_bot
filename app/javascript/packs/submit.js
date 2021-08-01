@@ -9,13 +9,14 @@ $(() => {
       datatype: "html",
     }).done(function(data) {
       console.log("ajax送信成功");
-      // console.log($(".auto").serializeArray()[1]);
+      // console.log($(".auto").serializeArray());
     }).fail(function(data) {
       console.log("失敗");
     })
   });
 
   $("#hashsend").click(() => {
+
     $("#hashform").submit((e) => {
       e.preventDefault();
       $.ajax({
@@ -28,10 +29,25 @@ $(() => {
       }).fail((data) => {
         console.log("失敗");
       })
-      var input_keyword = document.querySelector("#hashtag_hashtag");
-      console.log(input_keyword.value);
     });
+
+    // let key_word = $(".delete_keyword").data("keyword");
+    // let tag_list = document.querySelector(".tag_list");
+    // tag_list.insertAdjacentHTML("afterbegin", key_word);
   });
+
+  // $(".delete_keyword").click(() => {
+  //   $.ajax({
+  //     url: "http://localhost:3000/hashtags/delete/:id",
+  //     type: "post",
+  //     data: $(".")
+  //     datatype: "html",
+  //   }).done((data) => {
+  //     console.log("delete送信成功");
+  //   }).fail((data) => {
+  //     console.log("失敗");
+  //   })
+  // });
 });
 
 

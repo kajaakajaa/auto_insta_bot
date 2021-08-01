@@ -113,14 +113,7 @@ module InstabotAction
         rescue
           puts "このタグは既にフォロー済みです"
         end
-      elsif @rcd.follow == true && @rcd.unfollow == true
-        flash[:error] = "'登録済みの自動アンフォロー'をoffにしてから再度操作して下さい。"
-        @rcd.update_attribute(:follow, !@rcd.follow)
-        respond_to do |format|
-          format.js { render ajax_redirect_to(root_path) }
-        end
       else
-        @rcd.update_attribute(:user_id, !@rcd.follow)
         puts "フォローは'#{@rcd.follow}'です"
       end
     end
@@ -156,15 +149,7 @@ module InstabotAction
         rescue
           puts "このタグは既にフォロー解除済みです"
         end
-      elsif @rcd.unfollow == true && @rcd.follow == true
-        flash[:error] = "'自動フォロー'をoffにしてから再度操作して下さい。"
-        @rcd.update_attribute(:unfollow, !@rcd.unfollow)
-        respond_to do |format|
-          format.js { render ajax_redirect_to(root_path) }
-          puts "アンフォローは'#{@rcd.unfollow}'です"
-        end
       else
-        @rcd.update_attribute(:unfollow, !@rcd.unfollow)
         puts "アンフォローは'#{@rcd.unfollow}'です"
       end
     end
