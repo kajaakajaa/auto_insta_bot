@@ -215,37 +215,42 @@
                   フォローして欲しいユーザーが投稿しそうなハッシュタグを登録しましょう。
                 </p>
                 <%# ハッシュタグの入力 %>
-                <%# <div class="control-group"> %>
-                  <%# <div class="selectize-input items not-full"> %>
-                    <%= form_with(model: @hashtag, url: instabots_hashtag_path, id: :hashform, method: :post ) do |f| %>
-                      <%# <input class="set_hash" name=instabot[hash] type="text" autocomplete="on" placeholder="追加したいタグ名を入力してください" style="width: 224px; opacity: 1; position: relative; left: 0px;"> %>
-                      <%= f.text_field :hashtag, autocomplete: :on, placeholder: "追加したいタグ名を入力してください", style: "width:  31.3vw; height: 4.1vw; opacity: 1; position: relative; left: 0px; text-align: center;" %>
+                    <%= form_with(model: @hashtag, url: instabots_hashtag_path, id: :hashform, method: :post ,local: true) do |f| %>
+                      <%= f.text_field :hashtag, autocomplete: :off, placeholder: "追加したいタグ名を入力してください", style: "width:  31.3vw; height: 4.1vw; opacity: 1; position: relative; left: 0px; text-align: center;" %>
                       <%= f.submit "送信", id: :hashsend, style: "display: none;" %>
-                      <%# <input type="submit" id="submit_hash"> %>
                     <% end %>
-                  <%# </div> %>
-                  <div class="selectize-dropdown single tag_input" style="display: none; width: 325px; top: 44px; left: 0px; visibility: visible;">
-                    <div class="selectize-dropdown-content"></div>
-                  </div>
-                <%# </div> %>
-
-                <div class='related_hashtags'>
-                  <span class='title'>
-                    関連:
-                  </span>
-                  <ul class='related_hashtags_ul'></ul>
-                </div>
-                <div class='clearfix'></div>
                 <div class='selected_tag'>
-                  <span class='title'>
+                  <span class='title kajaa'>
                     登録中のハッシュタグ
                   </span>
-                  <span class='right_title'>
-                    フォロワー獲得数
-                  </span>
-                  <ul class='selected_tag_ul' data-text='計測中'>
+                  <ul>
+                    <% if @key_words.present? %>
+                      <% @key_words.each do |key_word| %>
+                        <li class="tag_list">
+                          <%= key_word.hashtag %>
+                          <a href="hashtags/delete/<%= key_word.id %>" data-keyword="<%= key_word.hashtag %>" data-method="delete" rel="nofollow" class="fa fa-close delete_keyword"></a>
+                        </li>
+                      <% end %>
+                    <% end %>
                   </ul>
-                  <div class='clearfix'></div>
+                  
+                    <%
+=begin%>
+ <% if @key_words.present? %>
+                      <% @key_words.each do |key_word| %>
+                        <%= form_with( url: "hashtags/delete/#{key_word.id}", class: "tag_delete", method: :post, local: true ) do |f| %>
+                          <input type="hidden" name="hashtag[hashtag]" value="<%= key_word.hashtag %>">
+                          <li class="tag_list">
+                            <span id="key_word_target">
+                              <%= key_word.hashtag %>
+                            </span>
+                            <a href="javascript:form1.submit()" class="fa fa-close delete_keyword"></a>
+                          </li>
+                        <% end %>
+                      <% end %> 
+                    <% end %> 
+<%
+=end%>
                 </div>
               </div>
               <div class='line_banner hidden-lg hidden-md'>
@@ -275,7 +280,7 @@
           </h2>
           <%# いいね、フォロー、アンフォロースイッチ %>
           <div class='auto_setting'>
-            <%= form_with(model: @auto, url: instabots_auto_path, method: :post, class: "auto" ) do |f| %>
+            <%= form_with(model: @auto, url: instabots_auto_path, method: :post, class: "auto" ,local: true) do |f| %>
               <div class='control-group'>
                 <label for='auto_like'>
                   自動いいね
@@ -289,7 +294,9 @@
                   </label>
                 </div>
               </div>
-              <label class='auto_like_target_label'>一日あたりの自動いいね数設定</label>
+              <%
+=begin%>
+ <label class='auto_like_target_label'>一日あたりの自動いいね数設定</label>
               <div class='auto_like_target_radio'>
                 <label>
                   <input checked type='radio' value='50'>
@@ -306,7 +313,9 @@
                   <%#= f.radio_button :auto_like_target, 400  %>
                   100以上
                 </label>
-              </div>
+              </div> 
+<%
+=end%>
               <div class='control-group'>
                 <label for='auto_follow'>
                   自動フォロー

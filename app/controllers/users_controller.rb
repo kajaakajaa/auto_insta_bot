@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @auto = Instabot.new
     @hashtag = Hashtag.new
-    # @key_word = Hashtag.
+    @key_words = Hashtag.includes(:user).order(created_at: :DESC)
     #新規登録の場合（データベースにデータがまだ無い場合）
     if Instabot.exists?(user_id: current_user.id)
        @instabot_rcd = Instabot.find_by(user_id: current_user.id)
@@ -28,6 +28,8 @@ class UsersController < ApplicationController
   end
   
   def destroy
+    hash_rcd = Hashtag.find_by(user_id: current_user.id)
+    hash_rcd.destroy
   end
 
   private
