@@ -119,3 +119,5 @@ class InstabotsController < ApplicationController
     params.require(:hashtag).permit(:hashtag).merge(user_id: current_user.id)
   end
 end
+
+
