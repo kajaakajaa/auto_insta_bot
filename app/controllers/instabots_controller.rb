@@ -18,98 +18,78 @@ class InstabotsController < ApplicationController
       key_word = hash_rcd.hashtag
 
 
-        #いいねの自動化処理
-        #初めての'on'時
+        # 新規レコード登録
         if !Instabot.exists?(user_id: current_user.id)
           @rcd = Instabot.new
+          # いいね
           if @rcd.good.to_s != params[:instabot][:good]
+              puts "フォローは#{@rcd.follow}です。"
+              puts "アンフォローは#{@rcd.unfollow}です。"
             @rcd.good = params[:instabot][:good]
-            @rcd.user_id = current_user.id
+            good_hashtag(key_word, number)
+          # フォロー
+          elsif @rcd.follow.to_s != params[:instabot][:follow]
+              puts "自動いいねは#{@rcd.good}です。"
+              puts "アンフォローは#{@rcd.unfollow}です。"
+            @rcd.follow = params[:instabot][:follow]
+            auto_follow(key_word) 
+          # アンフォロー
+          elsif @rcd.unfollow.to_s != params[:instabot][:unfollow]
+              puts "自動いいねは#{@rcd.good}です。"
+              puts "フォローは#{@rcd.follow}です。"
+            @rcd.unfollow = params[:instabot][:unfollow]
+            auto_unfollow(key_word)
+          end
+          if hash_rcd == hash_rcds.last
             @rcd.save
-            good_hashtag(key_word, number)
-          else
-            puts "自動いいねは既に'#{@rcd.good}'です"
           end
-        else #更新時
+        # 更新時
+        else
           @rcd = Instabot.find_by(user_id: current_user.id)
-          if @rcd.good.to_s != params[:instabot][:good] || hash_rcd != hash_rcds[0] && @rcd.good.to_s == params[:instabot][:good]
-            good_val = params[:instabot][:good]
-            @rcd.update_attribute(:good, good_val)
+          good_val = params[:instabot][:good]
+          follow_val = params[:instabot][:follow]
+          unfollow_val = params[:instabot][:unfollow]
 
-            good_hashtag(key_word, number)
-          else
-            puts "自動いいねは既に'#{@rcd.good}'です。"
-          end
-        end
-
-
-        #フォロー自動化処理
-          #初めての'on'時
-        if !Instabot.exists?(user_id: current_user.id)
-          @rcd = Instabot.new
-          @rcd.follow = params[:instabot][:follow]
-          @rcd.user_id = current_user.id
-          @rcd.save
-          auto_follow(key_word)
-        else #更新時
-          @rcd = Instabot.find_by(user_id: current_user.id)
-          # 今渡ったデータとレコードのデータがもし違うならの判定
-          if @rcd.follow.to_s != params[:instabot][:follow] || hash_rcd != hash_rcds[0] && @rcd.follow.to_s == params[:instabot][:follow]
-            follow_val = params[:instabot][:follow]
-            @rcd.update_attribute(:follow, follow_val)
-
-            if @rcd.follow == true && @rcd.unfollow == true
-              flash[:error] = "'フォロー' 又は 'アンフォロー'のいずれかをoffにしてから再度操作して下さい。"
-              @rcd.update_attribute(:follow, !@rcd.follow)
+          # いいね
+          if @rcd.good.to_s != params[:instabot][:good]
+              good_hashtag(key_word, number)
+          # フォロー
+          elsif @rcd.follow.to_s != params[:instabot][:follow]
+            # フォロー・アンフォローの被り阻止
+            if params[:instabot][:follow] == "true" && @rcd.unfollow == true
+              flash[:error] = "'自動アンフォロー'をoffにしてから再度操作して下さい。"
               respond_to do |format|
                 format.js { render ajax_redirect_to(root_path) }
               end
-              
+
               break
-            elsif @rcd.follow == true && @rcd.unfollow == false
+            elsif params[:instabot][:follow] == "true" && @rcd.unfollow == false
               auto_follow(key_word)
             else
-              puts "自動フォローは#{@rcd.follow}です（表）。"
+              auto_follow(key_word)
             end
-            
-          else
-            puts "自動フォローは既に'#{@rcd.follow}'です。"
-          end
-        end
-
-
-        #アンフォロー自動化処理
-          #初めての'on'時
-        if !Instabot.exists?(user_id: current_user.id)
-          @rcd = Instabot.new
-          @rcd.unfollow = params[:instabot][:unfollow]
-          @rcd.user_id = current_user.id
-          @rcd.save
-          auto_unfollow(key_word)
-        else #更新時
-          @rcd = Instabot.find_by(user_id: current_user.id)
-
-          # 今渡ったデータとレコードのデータがもし違うならの判定
-          if @rcd.unfollow.to_s != params[:instabot][:unfollow]
-            unfollow_val = params[:instabot][:unfollow]
-            @rcd.update_attribute(:unfollow, unfollow_val)
-
-            if @rcd.unfollow == true && @rcd.follow == true || hash_rcd != hash_rcds[0] && @rcd.unfollow.to_s == params[:instabot][:unfollow]
-              flash[:error] = "'フォロー' 又は 'アンフォロー'のいずれかをoffにしてから再度操作して下さい。"
-              @rcd.update_attribute(:unfollow, !@rcd.unfollow)
+          # アンフォロー
+          elsif @rcd.unfollow.to_s != params[:instabot][:unfollow]
+            # フォロー・アンフォローの被り阻止
+            if params[:instabot][:unfollow] == "true" && @rcd.follow == true
+              flash[:error] = "'自動フォロー'をoffにしてから再度操作して下さい。"
               respond_to do |format|
                 format.js { render ajax_redirect_to(root_path) }
               end
-              
+
               break
-            elsif @rcd.unfollow == true && @rcd.follow == false
+            elsif params[:instabot][:unfollow] == "true" && @rcd.unfollow == false
               auto_unfollow(key_word)
             else
-              puts "自動アンフォローは#{@rcd.unfollow}です（表）。"
+              auto_unfollow(key_word)
             end
-            
-          else
-            puts "自動アンフォローは既に'#{@rcd.unfollow}'です。"
+          end
+          if hash_rcd == hash_rcds.last
+            @rcd.update(good: good_val, follow: follow_val, unfollow: unfollow_val)
+            puts "自動化スイッチを更新しました。"
+            puts "自動いいねは#{@rcd.good}です。"
+            puts "フォローは#{@rcd.follow}です。"
+            puts "アンフォロー#{@rcd.unfollow}です。"
           end
         end
       end

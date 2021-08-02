@@ -40,7 +40,7 @@ module InstabotAction
 
     
     def good_hashtag(key_word, number)
-      if @rcd.good == true
+      if params[:instabot][:good] == "true"
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -85,7 +85,7 @@ module InstabotAction
 
 
     def auto_follow(key_word)
-      if @rcd.follow == true && @rcd.unfollow == false
+      if params[:instabot][:follow].to_s == "true" && @rcd.follow == false
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -110,9 +110,11 @@ module InstabotAction
         sleep 3
         begin
           @driver.execute_script("document.querySelector(`button.y3zKF`).click()")
+          puts "#{key_word}のタグをフォローしました。"
         rescue
-          puts "このタグは既にフォロー済みです"
+          puts "#{key_word}のタグは既にフォロー済みです"
         end
+        sleep 5
       else
         puts "フォローは'#{@rcd.follow}'です。（裏）"
       end
@@ -121,7 +123,8 @@ module InstabotAction
 
 
     def auto_unfollow(key_word)
-      if @rcd.unfollow == true && @rcd.follow == false
+      if params[:instabot][:unfollow] == "true" && @rcd.unfollow == false
+        binding.pry
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -146,9 +149,11 @@ module InstabotAction
         sleep 3
         begin
           @driver.execute_script("document.querySelector(`button._8A5w5`).click()")
+          puts "#{key_word}のタグを解除しました。"
         rescue
-          puts "このタグは既にフォロー解除済みです"
+          puts "'#{key_word}'のタグは既にフォロー解除済みです"
         end
+        sleep 5
       else
         puts "アンフォローは'#{@rcd.unfollow}'です。（裏）"
       end
