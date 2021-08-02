@@ -18,7 +18,7 @@ require("channels")
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-= require_tree
+// = require_tree
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

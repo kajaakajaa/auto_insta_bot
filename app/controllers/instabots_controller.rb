@@ -95,7 +95,6 @@ class InstabotsController < ApplicationController
             @rcd.update_attribute(:unfollow, unfollow_val)
 
             if @rcd.unfollow == true && @rcd.follow == true || hash_rcd != hash_rcds[0] && @rcd.unfollow.to_s == params[:instabot][:unfollow]
-              binding.pry
               flash[:error] = "'フォロー' 又は 'アンフォロー'のいずれかをoffにしてから再度操作して下さい。"
               @rcd.update_attribute(:unfollow, !@rcd.unfollow)
               respond_to do |format|
