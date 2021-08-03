@@ -104,9 +104,15 @@ class InstabotsController < ApplicationController
   # instabots_hashtag_path POST
   def hashtag
     @hash_rcd = Hashtag.new(hashtag_params)
-    @hash_rcd.save
-    respond_to do |format|
-      format.js { render ajax_redirect_to(root_path) }
+    if @hash_rcd.save
+      respond_to do |format|
+        format.js { render ajax_redirect_to(root_path) }
+      end
+    else
+      flash[:error] = "ハッシュタグの追加は上限２個までとなります。"
+      respond_to do |format|
+        format.js { render ajax_redirect_to(root_path) }
+      end
     end
   end
 

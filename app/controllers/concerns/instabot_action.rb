@@ -77,6 +77,7 @@ module InstabotAction
           @driver.execute_script("document.querySelector('a.coreSpriteRightPaginationArrow').click()")
           sleep 3
         }
+        @driver.quit
       else
         puts "いいねは'#{@rcd.good}'です。"
       end
@@ -86,6 +87,9 @@ module InstabotAction
 
     def auto_follow(key_word)
       if params[:instabot][:follow].to_s == "true" && @rcd.follow == false
+        # loop do
+        #   if sleep 3600
+
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -115,6 +119,7 @@ module InstabotAction
           puts "#{key_word}のタグは既にフォロー済みです"
         end
         sleep 5
+        @driver.quit
       else
         puts "フォローは'#{@rcd.follow}'です。（裏）"
       end
@@ -124,7 +129,6 @@ module InstabotAction
 
     def auto_unfollow(key_word)
       if params[:instabot][:unfollow] == "true" && @rcd.unfollow == false
-        binding.pry
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -154,6 +158,7 @@ module InstabotAction
           puts "'#{key_word}'のタグは既にフォロー解除済みです"
         end
         sleep 5
+        @driver.quit
       else
         puts "アンフォローは'#{@rcd.unfollow}'です。（裏）"
       end
