@@ -4,6 +4,4 @@ class HashtagsController < ApplicationController
     @hashtag_rcd.destroy
     redirect_to root_path
   end
-
-  private
 end

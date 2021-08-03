@@ -16,7 +16,6 @@ $(() => {
   });
 
   $("#hashsend").click(() => {
-
     $("#hashform").submit((e) => {
       e.preventDefault();
       $.ajax({
@@ -32,19 +31,18 @@ $(() => {
     });
   });
 
-  // ハッシュタグの削除
-  // $(".delete_keyword").click(() => {
-  //   $.ajax({
-  //     url: "http://localhost:3000/hashtags/delete/:id",
-  //     type: "post",
-  //     data: $(".")
-  //     datatype: "html",
-  //   }).done((data) => {
-  //     console.log("delete送信成功");
-  //   }).fail((data) => {
-  //     console.log("失敗");
-  //   })
-  // });
 });
 
 
+var unit_prices = document.getElementsByClassName("unit_price"); // 単価。
+
+unit_prices = Array.from( unit_prices );
+// 必要な変数の初期化
+let total = 0;
+let count = 0;
+
+// 全ての商品の合計金額を求める
+unit_prices.forEach(unit_price => {
+  total += parseInt(unit_price.dataset.price) * parseInt(amounts[count].value); 
+  count++ 
+});
