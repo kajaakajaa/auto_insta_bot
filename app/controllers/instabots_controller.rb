@@ -43,6 +43,8 @@ class InstabotsController < ApplicationController
           if hash_rcd == hash_rcds.last
             @rcd.save
           end
+
+
         # 更新時
         else
           @rcd = Instabot.find_by(user_id: current_user.id)
@@ -90,6 +92,21 @@ class InstabotsController < ApplicationController
             puts "自動いいねは#{@rcd.good}です。"
             puts "フォローは#{@rcd.follow}です。"
             puts "アンフォロー#{@rcd.unfollow}です。"
+          end
+        end
+        #一定時間おきループ
+        if hash_rcds.last
+          if @rcd.follow == true
+            loop do
+              if @rcd.follow == true
+                auto_follow(key_word)
+                if hash_rcds.last
+                  sleep 120
+                end
+              else
+                break
+              end
+            end
           end
         end
       end
