@@ -87,9 +87,6 @@ module InstabotAction
 
     def auto_follow(key_word)
       if params[:instabot][:follow].to_s == "true" && @rcd.follow == false
-        # loop do
-        #   if sleep 3600
-
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         

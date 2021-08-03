@@ -33,16 +33,3 @@ $(() => {
 
 });
 
-
-var unit_prices = document.getElementsByClassName("unit_price"); // 単価。
-
-unit_prices = Array.from( unit_prices );
-// 必要な変数の初期化
-let total = 0;
-let count = 0;
-
-// 全ての商品の合計金額を求める
-unit_prices.forEach(unit_price => {
-  total += parseInt(unit_price.dataset.price) * parseInt(amounts[count].value); 
-  count++ 
-});
