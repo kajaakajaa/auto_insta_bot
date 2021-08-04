@@ -41,5 +41,9 @@
     text-decoration: none;
 }
 
+.action_warn {
+    font-size: 12px;
+}
+
 *= require_tree .
 *= require_self
