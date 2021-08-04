@@ -5,6 +5,7 @@ module InstabotAction
       username = session[:instabot]["user_name"]
       password = session[:instabot]["password"]
 
+
       Selenium::WebDriver::Chrome::Service
       # 送信側のos状況をまとめたもの
       ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
@@ -86,7 +87,7 @@ module InstabotAction
 
 
     def auto_follow(key_word)
-      if params[:instabot][:follow].to_s == "true" && @rcd.follow == false
+      if params[:instabot][:follow].to_s == "true" # && @rcd.follow == false
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -125,7 +126,7 @@ module InstabotAction
 
 
     def auto_unfollow(key_word)
-      if params[:instabot][:unfollow] == "true" && @rcd.unfollow == false
+      if params[:instabot][:unfollow] == "true" # && @rcd.unfollow == false
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -150,7 +151,7 @@ module InstabotAction
         sleep 3
         begin
           @driver.execute_script("document.querySelector(`button._8A5w5`).click()")
-          puts "#{key_word}のタグを解除しました。"
+          puts "#{key_word}のタグのフォローを解除しました。"
         rescue
           puts "'#{key_word}'のタグは既にフォロー解除済みです"
         end
@@ -160,6 +161,7 @@ module InstabotAction
         puts "アンフォローは'#{@rcd.unfollow}'です。（裏）"
       end
     end
+
   end
 end
 

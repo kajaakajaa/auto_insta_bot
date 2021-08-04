@@ -12,10 +12,11 @@ class InstabotsController < ApplicationController
   # instabot_auto_path POST
   def auto
     hash_rcds = Hashtag.where(user_id: current_user.id)
+    random = Random.new
     if hash_rcds.exists?
-      number = 3
+      number = 60
       hash_rcds.each do |hash_rcd|
-      key_word = hash_rcd.hashtag
+        key_word = hash_rcd.hashtag
 
 
         # 新規レコード登録
@@ -23,25 +24,24 @@ class InstabotsController < ApplicationController
           @rcd = Instabot.new
           # いいね
           if @rcd.good.to_s != params[:instabot][:good]
-              puts "フォローは#{@rcd.follow}です。"
-              puts "アンフォローは#{@rcd.unfollow}です。"
             @rcd.good = params[:instabot][:good]
             good_hashtag(key_word, number)
           # フォロー
           elsif @rcd.follow.to_s != params[:instabot][:follow]
-              puts "自動いいねは#{@rcd.good}です。"
-              puts "アンフォローは#{@rcd.unfollow}です。"
             @rcd.follow = params[:instabot][:follow]
-            auto_follow(key_word) 
+            auto_follow(key_word)
           # アンフォロー
           elsif @rcd.unfollow.to_s != params[:instabot][:unfollow]
-              puts "自動いいねは#{@rcd.good}です。"
-              puts "フォローは#{@rcd.follow}です。"
             @rcd.unfollow = params[:instabot][:unfollow]
             auto_unfollow(key_word)
           end
           if hash_rcd == hash_rcds.last
+            @rcd.user_id = current_user.id
             @rcd.save
+            puts "自動化スイッチを新規登録しました。"
+            puts "いいねは'#{@rcd.good}'です。"
+            puts "フォローは'#{@rcd.follow}'です。"
+            puts "アンフォローは'#{@rcd.unfollow}'です。"
           end
 
 
@@ -51,6 +51,10 @@ class InstabotsController < ApplicationController
           good_val = params[:instabot][:good]
           follow_val = params[:instabot][:follow]
           unfollow_val = params[:instabot][:unfollow]
+          # on/off の状態
+          good_status = @rcd.good
+          follow_status = @rcd.follow
+          unfollow_status = @rcd.unfollow
 
           # いいね
           if @rcd.good.to_s != params[:instabot][:good]
@@ -59,14 +63,11 @@ class InstabotsController < ApplicationController
           elsif @rcd.follow.to_s != params[:instabot][:follow]
             # フォロー・アンフォローの被り阻止
             if params[:instabot][:follow] == "true" && @rcd.unfollow == true
-              flash[:error] = "'自動アンフォロー'をoffにしてから再度操作して下さい。"
+              flash[:error] = "'登録済みの自動フォロー解除'をoffにしてから再度操作して下さい。"
               respond_to do |format|
                 format.js { render ajax_redirect_to(root_path) }
               end
-
               break
-            elsif params[:instabot][:follow] == "true" && @rcd.unfollow == false
-              auto_follow(key_word)
             else
               auto_follow(key_word)
             end
@@ -78,10 +79,7 @@ class InstabotsController < ApplicationController
               respond_to do |format|
                 format.js { render ajax_redirect_to(root_path) }
               end
-
               break
-            elsif params[:instabot][:unfollow] == "true" && @rcd.unfollow == false
-              auto_unfollow(key_word)
             else
               auto_unfollow(key_word)
             end
@@ -89,21 +87,21 @@ class InstabotsController < ApplicationController
           if hash_rcd == hash_rcds.last
             @rcd.update(good: good_val, follow: follow_val, unfollow: unfollow_val)
             puts "自動化スイッチを更新しました。"
-            puts "自動いいねは#{@rcd.good}です。"
-            puts "フォローは#{@rcd.follow}です。"
-            puts "アンフォロー#{@rcd.unfollow}です。"
+            puts "自動いいねは'#{@rcd.good}'です。"
+            puts "フォローは'#{@rcd.follow}'です。"
+            puts "アンフォロー'#{@rcd.unfollow}'です。"
           end
         end
         #一定時間おきループ
-        if hash_rcds.last
+        if hash_rcd == hash_rcds.last
           if @rcd.follow == true
             loop do
-              if @rcd.follow == true
-                auto_follow(key_word)
-                if hash_rcds.last
-                  sleep 120
-                end
-              else
+              auto_follow(key_word)
+              sleep(random.rand(number)+5)
+              # スイッチのon/offを再確認。
+              @rcd = Instabot.find_by(user_id: current_user.id)
+              if @rcd.follow == false
+                puts "フォローを#{@rcd.follow}にしました。"
                 break
               end
             end
