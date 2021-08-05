@@ -66,6 +66,7 @@ module InstabotAction
         sleep 3
         @driver.execute_script("document.querySelectorAll('article img')[9].click()")
         sleep 3
+        binding.pry
         number.times{
           svg = @driver.find_element(:xpath, "//span[1]/button/div/span/*[name()='svg']")
           if svg.attribute("aria-label") == "いいね！" || svg.attribute("fill") == "#262626"
@@ -83,7 +84,6 @@ module InstabotAction
       #   puts "いいねは'#{@rcd.good}'です。"
       # end
     end
-
 
 
     def auto_follow(key_word)
