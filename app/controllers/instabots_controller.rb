@@ -11,16 +11,17 @@ class InstabotsController < ApplicationController
 
   # instabot_auto_path POST
   def auto
-    hash_rcds = Hashtag.where(user_id: current_user.id)
     random = Random.new
+    hash_rcds = Hashtag.where(user_id: current_user.id)
     if hash_rcds.exists?
-      number = 60
-      hash_rcds.each do |hash_rcd|
-        key_word = hash_rcd.hashtag
+      number = 1
+      timer = 60
 
 
-        # 新規レコード登録
-        if !Instabot.exists?(user_id: current_user.id)
+      # 新規レコード登録
+      if !Instabot.exists?(user_id: current_user.id)
+        hash_rcds.each do |hash_rcd|
+          key_word = hash_rcd.hashtag
           @rcd = Instabot.new
           # いいね
           if @rcd.good.to_s != params[:instabot][:good]
@@ -43,22 +44,40 @@ class InstabotsController < ApplicationController
             puts "フォローは'#{@rcd.follow}'です。"
             puts "アンフォローは'#{@rcd.unfollow}'です。"
           end
+        end
 
 
-        # 更新時
-        else
+      # 更新時
+      else
+        hash_rcds.each do |hash_rcd|
+          key_word = hash_rcd.hashtag
           @rcd = Instabot.find_by(user_id: current_user.id)
           good_val = params[:instabot][:good]
           follow_val = params[:instabot][:follow]
           unfollow_val = params[:instabot][:unfollow]
-          # on/off の状態
-          good_status = @rcd.good
-          follow_status = @rcd.follow
-          unfollow_status = @rcd.unfollow
 
           # いいね
-          if @rcd.good.to_s != params[:instabot][:good]
-              good_hashtag(key_word, number)
+          if @rcd.good.to_s != params[:instabot][:good] && params[:instabot][:good] == "true"
+            num = 0
+            loop do
+              # 上記の下記二行は無効の為、再度ループ処理を記述。
+              hash_rcds.each do |hash_rcd|
+                key_word = hash_rcd.hashtag
+                num += 1
+                good_hashtag(key_word, number)
+                # 40秒おきに発動2周目でbreak。
+                if hash_rcd == hash_rcds.last
+                  binding.pry
+                  sleep 40
+                  if num == 2
+                    break
+                    puts "ループを解除しました。"
+                  end
+                end
+              end
+            end
+          elsif @rcd.good.to_s != params[:instabot][:good] && params[:instabot][:good] == "false"
+            puts "いいねは'#{@rcd.good}'です。"
           # フォロー
           elsif @rcd.follow.to_s != params[:instabot][:follow]
             # フォロー・アンフォローの被り阻止
@@ -71,6 +90,7 @@ class InstabotsController < ApplicationController
             else
               auto_follow(key_word)
             end
+
           # アンフォロー
           elsif @rcd.unfollow.to_s != params[:instabot][:unfollow]
             # フォロー・アンフォローの被り阻止
@@ -92,21 +112,6 @@ class InstabotsController < ApplicationController
             puts "アンフォロー'#{@rcd.unfollow}'です。"
           end
         end
-        #一定時間おきループ
-        if hash_rcd == hash_rcds.last
-          if @rcd.follow == true
-            loop do
-              auto_follow(key_word)
-              sleep(random.rand(number)+5)
-              # スイッチのon/offを再確認。
-              @rcd = Instabot.find_by(user_id: current_user.id)
-              if @rcd.follow == false
-                puts "フォローを#{@rcd.follow}にしました。"
-                break
-              end
-            end
-          end
-        end
       end
     else
       flash[:error] = "ハッシュタグを追加して下さい。"
@@ -116,29 +121,28 @@ class InstabotsController < ApplicationController
     end
   end
 
-  # instabots_hashtag_path POST
-  def hashtag
-    @hash_rcd = Hashtag.new(hashtag_params)
-    if @hash_rcd.save
-      respond_to do |format|
-        format.js { render ajax_redirect_to(root_path) }
-      end
-    else
-      flash[:error] = "ハッシュタグの追加は上限２個までとなります。"
-      respond_to do |format|
-        format.js { render ajax_redirect_to(root_path) }
-      end
-    end
-  end
+
+  #一定時間おきにループ
+  # def loop_good
+  #   if @rcd.follow == true
+  #     loop do
+  #       auto_follow(key_word)
+  #       sleep(random.rand(number)+5)
+  #       # スイッチのon/offを再確認。
+  #       @rcd = Instabot.find_by(user_id: current_user.id)
+  #       if @rcd.follow == false
+  #         puts "フォローを#{@rcd.follow}にしました。"
+  #         break
+  #       end
+  #     end
+  #   end
+  # end
 
   private
   def instabot_params
     params.require(:session).permit(:user_name, :password)
   end
 
-  def hashtag_params
-    params.require(:hashtag).permit(:hashtag).merge(user_id: current_user.id)
-  end
 end
 
 

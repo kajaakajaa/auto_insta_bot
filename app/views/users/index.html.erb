@@ -215,7 +215,7 @@
                   フォローして欲しいユーザーが投稿しそうなハッシュタグを登録しましょう。
                 </p>
                 <%# ハッシュタグの入力 %>
-                    <%= form_with(model: @hashtag, url: instabots_hashtag_path, id: :hashform, method: :post ,local: true) do |f| %>
+                    <%= form_with(model: @hashtag, url: hashtag_path, id: :hashform, method: :post ,local: true) do |f| %>
                       <%= f.text_field :hashtag, autocomplete: :on, placeholder: "追加したいタグ名を入力してください", style: "width:  31.3vw; height: 4.1vw; opacity: 1; position: relative; left: 0px; text-align: center;" %>
                       <%= f.submit "送信", id: :hashsend, style: "display: none;" %>
                     <% end %>
