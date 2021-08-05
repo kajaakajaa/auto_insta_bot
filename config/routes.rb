@@ -27,6 +27,6 @@ Rails.application.routes.draw do
     post "instabots/auto" => "instabots#auto", as: :instabots_auto
     
     # hashtags
-    post "hashtags" => "instabots#hashtag", as: :instabots_hashtag
+    post "hashtags" => "hashtags#hashtag", as: :hashtag
     delete "hashtags/delete/:id" => "hashtags#destroy", as: :hashtag_destroy
 end

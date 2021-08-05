@@ -41,7 +41,7 @@ module InstabotAction
 
     
     def good_hashtag(key_word, number)
-      if params[:instabot][:good] == "true"
+      # if params[:instabot][:good] == "true"
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]
         
@@ -79,9 +79,9 @@ module InstabotAction
           sleep 3
         }
         @driver.quit
-      else
-        puts "いいねは'#{@rcd.good}'です。"
-      end
+      # else
+      #   puts "いいねは'#{@rcd.good}'です。"
+      # end
     end
 
 

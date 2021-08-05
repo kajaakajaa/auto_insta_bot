@@ -9,7 +9,7 @@ class Hashtag < ApplicationRecord
   REGISTAR_LIMIT_COUNT = 10
   def maximun_regi_count
     if Hashtag.includes(:user).length >= REGISTAR_LIMIT_COUNT
-      errors.add(:hashtag, "ハッシュタグの追加は上限2個までとなります。")
+      errors.add(:hashtag, "ハッシュタグの追加は上限１０個までとなります。")
     end
   end
 end
