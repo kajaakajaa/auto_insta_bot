@@ -56,20 +56,15 @@ class InstabotsController < ApplicationController
           # いいね
           if @rcd.good.to_s != params[:instabot][:good] && params[:instabot][:good] == "true"
             num = 0
-            loop do
+            while num == 2 do
               # 上記の下記二行は無効の為、再度ループ処理を記述。
               hash_rcds.each do |hash_rcd|
-                binding.pry
                 key_word = hash_rcd.hashtag
-                num += 1
                 good_hashtag(key_word, number)
-                binding.pry
                 if hash_rcd == hash_rcds.last
-                  sleep 40
-                  if num == 2
-                    break
-                    puts "ループを解除しました。"
-                  end
+                  sleep 30
+                  @rcd =
+                  num += 1
                 end
               end
             end # いいねoffに切替
