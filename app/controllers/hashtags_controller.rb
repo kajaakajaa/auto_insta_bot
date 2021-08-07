@@ -5,14 +5,14 @@ class HashtagsController < ApplicationController
   def hashtag
     @hash_rcd = Hashtag.new(hashtag_params)
     if @hash_rcd.save
-      respond_to do |format|
-        format.js { render ajax_redirect_to(root_path) }
-      end
-    else
-      flash[:error] = "ハッシュタグの追加は上限１０個までとなります。"
-      respond_to do |format|
-        format.js { render ajax_redirect_to(root_path) }
-      end
+      # respond_to do |format|
+      #   format.js { render ajax_redirect_to(root_path) }
+      # end
+    # else
+    #   flash[:error] = "ハッシュタグの追加は上限１０個までとなります。"
+      # respond_to do |format|
+      #   format.js { render ajax_redirect_to(root_path) }
+      # end
     end
   end
 
