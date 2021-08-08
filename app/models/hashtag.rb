@@ -5,7 +5,7 @@ class Hashtag < ApplicationRecord
   validates :hashtag, length: { in: 1..15 }, presence: true, uniqueness: { scope: :user_id }
   validate :maximun_regi_count
 
-
+  #10個までは登録可
   REGISTAR_LIMIT_COUNT = 10
   def maximun_regi_count
     if Hashtag.includes(:user).length >= REGISTAR_LIMIT_COUNT

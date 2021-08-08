@@ -52,10 +52,9 @@ class InstabotsController < ApplicationController
           good_val = params[:instabot][:good]
           follow_val = params[:instabot][:follow]
           unfollow_val = params[:instabot][:unfollow]
+
           # いいね
-          @rcd.update(good: good_val)
-          binding.pry
-          if good_val == "true"
+          if @rcd.good != good_val && good_val == "true"
             now = Time.now
             end_time = now + 240
             while Time.now < end_time do
@@ -64,20 +63,19 @@ class InstabotsController < ApplicationController
                 key_word = hash_rcd.hashtag
                 good_hashtag(key_word, number)
                 if hash_rcd == hash_rcds.last
-                  binding.pry
                   @rcd.update(good: good_val)
+                  binding.pry
                   sleep 20
-                  if @rcd.good == false
-                    binding.pry
+                  if good_val == "false"
                     break
                   end
                 end
               end
             end
           # フォロー
-          elsif @rcd.follow.to_s != params[:instabot][:follow]
+          elsif @rcd.follow.to_s != follow_val
             # フォロー・アンフォローの被り阻止
-            if params[:instabot][:follow] == "true" && @rcd.unfollow == true
+            if follow_val == "true" && @rcd.unfollow == true
               flash[:error] = "'登録済みの自動フォロー解除'をoffにしてから再度操作して下さい。"
               respond_to do |format|
                 format.js { render ajax_redirect_to(root_path) }
@@ -88,9 +86,9 @@ class InstabotsController < ApplicationController
             end
 
           # アンフォロー
-          elsif @rcd.unfollow.to_s != params[:instabot][:unfollow]
+          elsif @rcd.unfollow.to_s != unfollow_val
             # フォロー・アンフォローの被り阻止
-            if params[:instabot][:unfollow] == "true" && @rcd.follow == true
+            if unfollow_val == "true" && @rcd.follow == true
               flash[:error] = "'自動フォロー'をoffにしてから再度操作して下さい。"
               respond_to do |format|
                 format.js { render ajax_redirect_to(root_path) }
