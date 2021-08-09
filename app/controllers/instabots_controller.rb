@@ -14,8 +14,7 @@ class InstabotsController < ApplicationController
     random = Random.new
     hash_rcds = Hashtag.where(user_id: current_user.id)
     if hash_rcds.exists?
-      number = 1
-      timer = 60
+      number = params[:instabot][:number].to_i
       hash_rcds.each do |hash_rcd|
         key_word = hash_rcd.hashtag
       
@@ -26,6 +25,8 @@ class InstabotsController < ApplicationController
           # いいね
           if @rcd.good.to_s != params[:instabot][:good]
             @rcd.good = params[:instabot][:good]
+            @rcd.number = params[:instabot][:number]
+            binding.pry
             good_hashtag(key_word, number)
           # フォロー
           elsif @rcd.follow.to_s != params[:instabot][:follow]
@@ -41,6 +42,7 @@ class InstabotsController < ApplicationController
             @rcd.save
             puts "自動化スイッチを新規登録しました。"
             puts "いいねは'#{@rcd.good}'です。"
+            puts "いいね'上限数'は'#{@rcd.number}'です。"
             puts "フォローは'#{@rcd.follow}'です。"
             puts "アンフォローは'#{@rcd.unfollow}'です。"
           end
@@ -50,6 +52,7 @@ class InstabotsController < ApplicationController
         else
           @rcd = Instabot.find_by(user_id: current_user.id)
           good_val = params[:instabot][:good]
+          number_val = params[:instabot][:number]
           follow_val = params[:instabot][:follow]
           unfollow_val = params[:instabot][:unfollow]
 
@@ -57,21 +60,19 @@ class InstabotsController < ApplicationController
           if @rcd.good != good_val && good_val == "true"
             now = Time.now
             end_time = now + 240
-            while Time.now < end_time do
+            while Time.now < end_time && good_val == "true" do
+              binding.pry
               # 改めてeach do処理をかける。
               hash_rcds.each do |hash_rcd|
                 key_word = hash_rcd.hashtag
                 good_hashtag(key_word, number)
                 if hash_rcd == hash_rcds.last
-                  @rcd.update(good: good_val)
-                  binding.pry
+                  @rcd.update(good: good_val, number: number_val)
                   sleep 20
-                  if good_val == "false"
-                    break
-                  end
                 end
               end
             end
+
           # フォロー
           elsif @rcd.follow.to_s != follow_val
             # フォロー・アンフォローの被り阻止
@@ -99,9 +100,10 @@ class InstabotsController < ApplicationController
             end
           end
           if hash_rcd == hash_rcds.last
-            @rcd.update(good: good_val, follow: follow_val, unfollow: unfollow_val)
+            @rcd.update(good: good_val, number: number_val, follow: follow_val, unfollow: unfollow_val)
             puts "自動化スイッチを更新しました。"
             puts "自動いいねは'#{@rcd.good}'です。"
+            puts "いいね'上限数'は'#{@rcd.number}'です。"
             puts "フォローは'#{@rcd.follow}'です。"
             puts "アンフォロー'#{@rcd.unfollow}'です。"
           end

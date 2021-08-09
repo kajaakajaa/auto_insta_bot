@@ -10,6 +10,7 @@ class CreateInstabots < ActiveRecord::Migration[6.0]
     add_column :instabots, :good, :boolean, default: false, null: false
     add_column :instabots, :follow, :boolean, default: false, null: false
     add_column :instabots, :unfollow, :boolean, default: false, null: false
+    add_column :instabots, :number, :integer, default: 50, null: false
   end
 
   def down

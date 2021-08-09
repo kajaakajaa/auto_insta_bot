@@ -41,6 +41,7 @@ module InstabotAction
 
     
     def good_hashtag(key_word, number)
+      binding.pry
       # if params[:instabot][:good] == "true"
         username = session[:instabot]["user_name"]
         password = session[:instabot]["password"]

@@ -31,18 +31,5 @@ $(() => {
     });
   });
 
-  $(".number").click(() => {
-    $.ajax({
-      url: "http://localhost:3000/numbers",
-      type: "post",
-      data: $(".number_send").serialize(),
-      datatype: "html",
-    }).done((data) => {
-      console.log("上限数送信成功");
-    }).fail((data) => {
-      console.log("失敗");
-    })
-  });
-
 });
 

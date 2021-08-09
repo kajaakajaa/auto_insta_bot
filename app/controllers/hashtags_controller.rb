@@ -19,12 +19,6 @@ class HashtagsController < ApplicationController
     end
   end
 
-  # number_path POST
-  def number
-    @number = Hashtag.find_by(user_id: current_user.id)
-    @number.update(number: params[:hashtag][:number])
-  end
-
   def destroy
     @hashtag_rcd = Hashtag.find(params[:id])
     @hashtag_rcd.destroy
@@ -35,8 +29,4 @@ end
 private
 def hashtag_params
   params.require(:hashtag).permit(:hashtag).merge(user_id: current_user.id)
-end
-
-def number_prams
-  params.require(:hashtag).permit(:number).merge(user_id: current_user.id)
 end
