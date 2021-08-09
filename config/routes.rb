@@ -29,4 +29,5 @@ Rails.application.routes.draw do
     # hashtags
     post "hashtags" => "hashtags#hashtag", as: :hashtag
     delete "hashtags/delete/:id" => "hashtags#destroy", as: :hashtag_destroy
+    post "numbers" => "hashtags#number", as: :number
 end

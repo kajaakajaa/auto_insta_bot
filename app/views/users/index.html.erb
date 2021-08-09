@@ -276,28 +276,23 @@
                   </label>
                 </div>
               </div>
-              <%
-=begin%>
- <label class='auto_like_target_label'>一日あたりの自動いいね数設定</label>
-              <div class='auto_like_target_radio'>
-                <label>
-                  <input checked type='radio' value='50'>
-                  <%#= f.radio_button :auto_like_target, 50, checked: true %>
-                  50程度
-                </label>
-                <label>
-                  <input type='radio' value='100'>
-                  <%#= f.radio_button :auto_like_target, 100  %>
-                  100程度
-                </label>
-                <label>
-                  <input type='radio' value='400'>
-                  <%#= f.radio_button :auto_like_target, 400  %>
-                  100以上
-                </label>
-              </div> 
-<%
-=end%>
+              <label class='auto_like_target_label'>一日あたりの自動いいね数設定</label>
+              <%= form_with(model: @hashtag, url: number_path, method: :post, class: "number_send", local: true) do |f| %>
+                <div class='auto_like_target_radio'>
+                  <label>
+                    <%= f.radio_button :number, 50, class: "number", checked: true %>
+                    50程度
+                  </label>
+                  <label>
+                    <%= f.radio_button :number, 100, class: "number" %>
+                    100程度
+                  </label>
+                  <label>
+                    <%= f.radio_button :number, 400, class: "number" %>
+                    100以上
+                  </label>
+                </div>
+              <% end %>
               <div class='control-group'>
                 <label for='auto_follow'>
                   自動フォロー
