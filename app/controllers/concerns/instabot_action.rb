@@ -41,48 +41,43 @@ module InstabotAction
 
     
     def good_hashtag(key_word, number)
-      binding.pry
-      # if params[:instabot][:good] == "true"
-        username = session[:instabot]["user_name"]
-        password = session[:instabot]["password"]
-        
-        Selenium::WebDriver::Chrome::Service
-        # 送信側のos状況をまとめたもの
-        ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
-        # シークレットモード
-        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
-        client = Selenium::WebDriver::Remote::Http::Default.new
-        client.read_timeout = 300
-        @driver = Selenium::WebDriver.for :chrome, http_client: client, desired_capabilities: caps
-        @driver.manage.timeouts.implicit_wait = 30
-        @driver.navigate.to'https://www.instagram.com/accounts/login/?source=auth_switcher'
-        sleep 5
-        @driver.find_element(:name, 'username').send_keys(username)
-        @driver.find_element(:name, 'password').send_keys(password)
-        @driver.find_element(:name, 'password').send_keys(:return)
-        sleep 5
-        encode_word = URI.encode_www_form_component(key_word)
-        sleep 3
-        @driver.navigate.to"https://www.instagram.com/explore/tags/#{encode_word}/"
-        sleep 3
-        @driver.execute_script("document.querySelectorAll('article img')[9].click()")
-        sleep 3
-        number.times{
-          svg = @driver.find_element(:xpath, "//span[1]/button/div/span/*[name()='svg']")
-          if svg.attribute("aria-label") == "いいね！" || svg.attribute("fill") == "#262626"
+      username = session[:instabot]["user_name"]
+      password = session[:instabot]["password"]
+      
+      Selenium::WebDriver::Chrome::Service
+      # 送信側のos状況をまとめたもの
+      ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
+      # シークレットモード
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
+      client = Selenium::WebDriver::Remote::Http::Default.new
+      client.read_timeout = 300
+      @driver = Selenium::WebDriver.for :chrome, http_client: client, desired_capabilities: caps
+      @driver.manage.timeouts.implicit_wait = 30
+      @driver.navigate.to'https://www.instagram.com/accounts/login/?source=auth_switcher'
+      sleep 5
+      @driver.find_element(:name, 'username').send_keys(username)
+      @driver.find_element(:name, 'password').send_keys(password)
+      @driver.find_element(:name, 'password').send_keys(:return)
+      sleep 5
+      encode_word = URI.encode_www_form_component(key_word)
+      sleep 3
+      @driver.navigate.to"https://www.instagram.com/explore/tags/#{encode_word}/"
+      sleep 3
+      @driver.execute_script("document.querySelectorAll('article img')[9].click()")
+      sleep 3
+      number.times{
+        svg = @driver.find_element(:xpath, "//span[1]/button/div/span/*[name()='svg']")
+        if svg.attribute("aria-label") == "いいね！" || svg.attribute("fill") == "#262626"
           @driver.execute_script("document.querySelectorAll(`button.wpO6b`)[1].click()")
-            sleep 3
-          else
-            puts "この記事には既にイイねが付いています"
-          end      
           sleep 3
-          @driver.execute_script("document.querySelector('a.coreSpriteRightPaginationArrow').click()")
-          sleep 3
-        }
-        @driver.quit
-      # else
-      #   puts "いいねは'#{@rcd.good}'です。"
-      # end
+        else
+          puts "この記事には既にイイねが付いています"
+        end      
+        sleep 3
+        @driver.execute_script("document.querySelector('a.coreSpriteRightPaginationArrow').click()")
+        sleep 3
+      }
+      @driver.quit
     end
 
 

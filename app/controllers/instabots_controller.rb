@@ -26,7 +26,6 @@ class InstabotsController < ApplicationController
           if @rcd.good.to_s != params[:instabot][:good]
             @rcd.good = params[:instabot][:good]
             @rcd.number = params[:instabot][:number]
-            binding.pry
             good_hashtag(key_word, number)
           # フォロー
           elsif @rcd.follow.to_s != params[:instabot][:follow]
@@ -59,19 +58,16 @@ class InstabotsController < ApplicationController
           # いいね
           if @rcd.good != good_val && good_val == "true"
             now = Time.now
-            end_time = now + 240
-            while Time.now < end_time && good_val == "true" do
-              binding.pry
-              # 改めてeach do処理をかける。
-              hash_rcds.each do |hash_rcd|
+            end_time = now + 86400
+            # while Time.now < end_time do
+              # hash_rcds.each do |hash_rcd|
                 key_word = hash_rcd.hashtag
                 good_hashtag(key_word, number)
                 if hash_rcd == hash_rcds.last
-                  @rcd.update(good: good_val, number: number_val)
-                  sleep 20
+                  @rcd.update(good: good_val)
                 end
-              end
-            end
+              # end
+            # end
 
           # フォロー
           elsif @rcd.follow.to_s != follow_val
