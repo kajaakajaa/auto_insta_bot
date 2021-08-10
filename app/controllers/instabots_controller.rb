@@ -14,7 +14,7 @@ class InstabotsController < ApplicationController
     random = Random.new
     hash_rcds = Hashtag.where(user_id: current_user.id)
     if hash_rcds.exists?
-      number = 3 #params[:instabot][:number].to_i
+      number = params[:instabot][:number].to_i
       hash_rcds.each do |hash_rcd|
         key_word = hash_rcd.hashtag
       
