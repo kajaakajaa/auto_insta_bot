@@ -29,9 +29,11 @@ class InstabotsController < ApplicationController
           # フォロー
           elsif @rcd.follow.to_s != params[:instabot][:follow]
             auto_follow(key_word)
+            @rcd.follow = params[:instabot][:follow]
           # アンフォロー
           elsif @rcd.unfollow.to_s != params[:instabot][:unfollow]
             auto_unfollow(key_word)
+            @rcd.unfollow = params[:instabot][:unfollow]
           end
           if hash_rcd == hash_rcds.last
             @rcd.user_id = current_user.id
@@ -52,15 +54,30 @@ class InstabotsController < ApplicationController
           if @rcd.good != good_val && good_val == "true"
             key_word = hash_rcd.hashtag
             good_hashtag(key_word, number)
-
           # フォロー
           elsif @rcd.follow.to_s != follow_val
-            auto_follow(key_word)
-
+            if follow_val == "true" && unfollow_val == "false"
+              auto_follow(key_word)
+              @rcd.update(follow: follow_val)
+              puts "アンフォローを#{@rcd.unfollow}にしました。"
+            elsif follow_val == "true" && follow_val == "true"
+              flash[:error] = "'登録済みの自動フォロー解除'を解除してから再度操作下さい。"
+            else
+              @rcd.update(follow: follow_val)
+              puts "フォローを#{@rcd.follow}にしました。"
+            end
           # アンフォロー
           elsif @rcd.unfollow.to_s != unfollow_val
-            auto_unfollow(key_word)
-            
+            if unfollow_val == "true" && follow_val == "false"
+              auto_unfollow(key_word)
+              @rcd.update(unfollow: unfollow_val)
+              puts "アンフォローを#{@rcd.unfollow}にしました。"
+            elsif unfollow_val == "true" && follow_val == "true"
+              flash[:error] = "'自動フォロー'を解除してから再度操作下さい。"
+            else
+              @rcd.update(unfollow: unfollow_val)
+              puts "アンフォローを#{@rcd.unfollow}にしました。"
+            end
           end
           if hash_rcd == hash_rcds.last
             respond_to do |format|
