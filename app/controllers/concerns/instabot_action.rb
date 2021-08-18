@@ -10,7 +10,7 @@ module InstabotAction
       # 送信側のos状況をまとめたもの
       ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
       # シークレットモード
-      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--headless", "--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
       client = Selenium::WebDriver::Remote::Http::Default.new
       client.read_timeout = 300
       @driver = Selenium::WebDriver.for :chrome, http_client: client, desired_capabilities: caps
@@ -48,7 +48,7 @@ module InstabotAction
       # 送信側のos状況をまとめたもの
       ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
       # シークレットモード
-      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--headless", "--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
       client = Selenium::WebDriver::Remote::Http::Default.new
       client.read_timeout = 300
       @driver = Selenium::WebDriver.for :chrome, http_client: client, desired_capabilities: caps
@@ -90,7 +90,7 @@ module InstabotAction
         # 送信側のos状況をまとめたもの
         ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
         # シークレットモード
-        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
+        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--headless", "--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
         client = Selenium::WebDriver::Remote::Http::Default.new
         client.read_timeout = 300
         @driver = Selenium::WebDriver.for :chrome, http_client: client, desired_capabilities: caps
@@ -129,7 +129,7 @@ module InstabotAction
         # 送信側のos状況をまとめたもの
         ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36'
         # シークレットモード
-        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
+        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { args: ["--headless", "--user-agent=#{ua}", 'window-size=1280x800', '--incognito'] })
         client = Selenium::WebDriver::Remote::Http::Default.new
         client.read_timeout = 300
         @driver = Selenium::WebDriver.for :chrome, http_client: client, desired_capabilities: caps
