@@ -70,9 +70,8 @@
   left: 0px;
   text-align: center;
 }
-
 .hashtag_input::placeholder {
-  font-size: 10px;
+  font-size: 16px;
 } 
 
 /* ハンバーガーメニュー（レスポンシブ時） */
@@ -82,6 +81,10 @@
   }
 }
 @media screen and (max-width: 420px) {
+  .hashtag_input::placeholder {
+    font-size: 10px;
+  }
+
   .menu-btn {
     position: fixed;
     top: 10px;

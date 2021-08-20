@@ -15,7 +15,7 @@ $(() => {
     })
   });
 
-  $("#hashsend").on("click mousedown", () => {
+  $("#hashsend").on("click change", () => {
     $("#hashform").submit((e) => {
       e.preventDefault();
       $.ajax({
