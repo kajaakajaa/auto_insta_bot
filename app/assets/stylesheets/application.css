@@ -72,7 +72,17 @@
 }
 .hashtag_input::placeholder {
   font-size: 16px;
-} 
+}
+@media screen and (min-width: 421px) {
+  #hashsend {
+    display: none;
+  }
+}
+@media screen and (max-width: 420px) {
+  .hashtag_input::placeholder, .hashtag_input {
+    font-size: 10px;
+  }
+}
 
 /* ハンバーガーメニュー（レスポンシブ時） */
 @media screen and (min-width: 421px) {
@@ -81,10 +91,6 @@
   }
 }
 @media screen and (max-width: 420px) {
-  .hashtag_input::placeholder {
-    font-size: 10px;
-  }
-
   .menu-btn {
     position: fixed;
     top: 10px;
