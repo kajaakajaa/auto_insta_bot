@@ -16,19 +16,16 @@ $(() => {
   });
 
   $("#hashtag_hashtag").on("submit", () => {
-    // $("#hashform").submit((e) => {
-      // e.preventDefault();
-      $.ajax({
-        url: "http://localhost:3000/hashtags",
-        type: "post",
-        data: $("#hashform").serialize(),
-        datatype: "html",
-      }).done((data) => {
-        console.log("hash_tag送信成功");
-      }).fail((data) => {
-        console.log("失敗");
-      })
-    // });
+    $.ajax({
+      url: "http://localhost:3000/hashtags",
+      type: "post",
+      data: $("#hashform").serialize(),
+      datatype: "html",
+    }).done((data) => {
+      console.log("hash_tag送信成功");
+    }).fail((data) => {
+      console.log("失敗");
+    })
   });
 
 });
