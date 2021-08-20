@@ -15,9 +15,9 @@ $(() => {
     })
   });
 
-  $("#hashsend").on("click change", () => {
-    $("#hashform").submit((e) => {
-      e.preventDefault();
+  $("#hashtag_hashtag").on("submit", () => {
+    // $("#hashform").submit((e) => {
+      // e.preventDefault();
       $.ajax({
         url: "http://localhost:3000/hashtags",
         type: "post",
@@ -28,7 +28,7 @@ $(() => {
       }).fail((data) => {
         console.log("失敗");
       })
-    });
+    // });
   });
 
 });

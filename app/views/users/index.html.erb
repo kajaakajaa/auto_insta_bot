@@ -136,7 +136,7 @@
                 <%# ハッシュタグの入力 %>
                     <%= form_with(model: @hashtag, url: hashtag_path, id: :hashform, method: :post, local: true) do |f| %>
                       <%= f.text_field :hashtag, autocomplete: :on, placeholder: "追加したいタグ名を入力してください", class: "hashtag_input" %>
-                      <%= f.submit "送信", id: :hashsend, style: "display: none;" %>
+                      <%= f.submit "送信", id: :hashsend %>
                     <% end %>
                 <div class='selected_tag'>
                   <span class='title'>
