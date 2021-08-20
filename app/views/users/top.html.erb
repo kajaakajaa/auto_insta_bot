@@ -20,6 +20,24 @@
   <meta name="csrf-token" content="PnY85flhRs5d39em24+BBac+lK332l1f7esCMrAaM86Ru1LPR7DY0yOYkrsXagnAa8o0obR5ShG0KUJqK65Dfg==" />
 </head>
 <body>
+  <%# ハンバーガーメニュー ↓%>
+  <div class="hamburger-menu">
+    <input type="checkbox" id="menu-btn-check">
+    <label for="menu-btn-check" class="menu-btn">
+      <span></span>
+    </label>
+    <div class="menu-content">
+      <ul>
+        <li>
+          <a href="/users/sign_up">新規登録</a>
+        </li>
+        <li>
+          <a href="/users/sign_in">ログイン</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <%# ハンバーガーメニュー ↑%>
   <header>
     <div class='header_inner'>
       <div class='main_head'>
@@ -34,39 +52,6 @@
             <a class='btn' href='/users/sign_in' rel='nofollow'>ログイン</a>
           </li>
         </ul>
-        <%# ハンバーガーメニュー ↓%>
-        <%# <div class="hamburger-menu">
-          <input type="checkbox" id="menu-btn-check">
-          <label for="menu-btn-check" class="menu-btn"><span></span></label>
-          <div class="menu-content">
-            <ul>
-              <li>
-                  <a href="/users/sign_up">新規登録</a>
-              </li>
-              <li>
-                <a href="/users/sign_in">ログイン</a>
-              </li>
-            </ul>
-          </div>
-        </div> %>
-
-        <div class="hamburger-menu">
-          <input type="checkbox" id="menu-btn-check">
-          <label for="menu-btn-check" class="menu-btn">
-            <span></span>
-          </label>
-          <div class="menu-content">
-            <ul>
-              <li>
-                <a href="/users/sign_up">新規登録</a>
-              </li>
-              <li>
-                <a href="/users/sign_in">ログイン</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <%# ハンバーガーメニュー ↑%>
         <nav class='top_menu'>
           <div class='cd-primary-nav'>
             <ul class='btn_area fadein'>
