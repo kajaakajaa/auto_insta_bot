@@ -9,9 +9,8 @@ class InstabotsController < ApplicationController
     insta_sign_in
   end
 
-  # instabot_auto_path POST
+  # instabots_auto_path POST
   def auto
-    random = Random.new
     hash_rcds = Hashtag.where(user_id: current_user.id)
     if hash_rcds.exists?
       number = params[:instabot][:number].to_i

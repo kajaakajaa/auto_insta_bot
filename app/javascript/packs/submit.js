@@ -9,7 +9,6 @@ $(() => {
       datatype: "html",
     }).done(function(data) {
       console.log("ajax送信成功");
-      // console.log($(".auto").serializeArray());
     }).fail(function(data) {
       console.log("失敗");
     })
