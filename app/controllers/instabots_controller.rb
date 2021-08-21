@@ -56,9 +56,9 @@ class InstabotsController < ApplicationController
           # フォロー
           elsif @rcd.follow.to_s != follow_val
             if follow_val == "true" && unfollow_val == "false"
-              auto_follow(key_word)
               @rcd.update(follow: follow_val)
-              puts "アンフォローを#{@rcd.unfollow}にしました。"
+              auto_follow(key_word)
+              puts "フォローを#{@rcd.follow}にしました。"
             elsif follow_val == "true" && follow_val == "true"
               flash[:error] = "'登録済みの自動フォロー解除'を解除してから再度操作下さい。"
             else
@@ -68,8 +68,8 @@ class InstabotsController < ApplicationController
           # アンフォロー
           elsif @rcd.unfollow.to_s != unfollow_val
             if unfollow_val == "true" && follow_val == "false"
-              auto_unfollow(key_word)
               @rcd.update(unfollow: unfollow_val)
+              auto_unfollow(key_word)
               puts "アンフォローを#{@rcd.unfollow}にしました。"
             elsif unfollow_val == "true" && follow_val == "true"
               flash[:error] = "'自動フォロー'を解除してから再度操作下さい。"
