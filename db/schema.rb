@@ -12,18 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2021_07_30_012953) do
 
-  create_table "hashtags", force: :cascade do |t|
+  create_table "hashtags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "hashtag", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_hashtags_on_user_id"
   end
 
-  create_table "instabots", force: :cascade do |t|
+  create_table "instabots", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "user_name"
     t.string "password"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "good", default: false, null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_012953) do
     t.index ["user_id"], name: "index_instabots_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

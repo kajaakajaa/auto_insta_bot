@@ -11,8 +11,10 @@ default: &default
 
 development:
   <<: *default
-  adapter: sqlite3
+  adapter: mysql2
   database: instabot_development
+  username: root
+  password: <%= ENV["USERPASSWORD"] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
