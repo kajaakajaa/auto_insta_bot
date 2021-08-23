@@ -30,3 +30,4 @@ production:
   database: instabot_production
   username: <%= ENV["USERNAME"] %>
   password: <%= ENV["USERPASSWORD"] %>
+  host: <%= ENV["IPADDRESS"] %>
