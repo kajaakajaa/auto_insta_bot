@@ -12,8 +12,9 @@ class CreateInstabots < ActiveRecord::Migration[6.0]
     add_column :instabots, :unfollow, :boolean, default: false, null: false
     add_column :instabots, :number, :integer, default: 50, null: false
   end
-
+  
   def down
+    remove_column :instabots, :text, :string
     remove_column :instabots, :hashtag, :string, null: false
   end
 end
