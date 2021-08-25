@@ -11,7 +11,7 @@ default: &default
 
 development:
   <<: *default
-  adapter: mysql2
+  adapter: sqlite3
   database: instabot_development
   username: <%= ENV["USERNAME"] %>
   password: <%= ENV["USERPASSWORD"] %>
