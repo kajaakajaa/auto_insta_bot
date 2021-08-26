@@ -28,5 +28,5 @@ production:
   <<: *default
   adapter: mysql2
   database: instabot_production
-  # username: <%= ENV["USERNAME"] %>
-  # password: <%= ENV["USERPASSWORD"] %>
+  username: <%= ENV["USERNAME"] %>
+  password: <%= ENV["USERPASSWORD"] %>
