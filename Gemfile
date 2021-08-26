@@ -73,8 +73,8 @@ group :test do
 end
 
 group :production do
-  # gem 'mysql2'
-  gem "sqlite3"
+  gem 'mysql2'
+  # gem "sqlite3"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
