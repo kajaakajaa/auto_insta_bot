@@ -28,5 +28,6 @@ production:
   <<: *default
   adapter: mysql2
   database: instabot_production
-  username: <%= ENV["USERNAME"] %>
+  username: egoba
   password: <%= ENV["USERPASSWORD"] %>
+  host: "153.126.158.233"
