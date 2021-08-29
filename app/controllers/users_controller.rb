@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   include InstabotAction
-  before_action :redirect, except: :top
+  before_action :redirect, except: %i[top user_policy privacy_policy line_contact management]
+
 
   def index
     @auto = Instabot.new
@@ -24,9 +25,7 @@ class UsersController < ApplicationController
        @unfollow_check = session[:instabot]["unfollow"]
     end
   end
- 
-  def top
-  end
+
   
   def destroy
     hash_rcd = Hashtag.find_by(user_id: current_user.id)
