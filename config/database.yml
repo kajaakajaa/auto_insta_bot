@@ -30,4 +30,4 @@ production:
   database: instabot_production
   username: egoba
   password: <%= ENV["USERPASSWORD"] %>
-  host: "153.126.158.233"
+  host: "localhost"
