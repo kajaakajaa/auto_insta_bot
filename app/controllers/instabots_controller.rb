@@ -21,22 +21,24 @@ class InstabotsController < ApplicationController
         # 新規レコード登録
         if !Instabot.exists?(user_id: current_user.id)
           @rcd = Instabot.new
+          @rcd.user_id = current_user.id
           # いいね
           if @rcd.good.to_s != params[:instabot][:good]
             @rcd.number = params[:instabot][:number]
+            @rcd.save
             good_hashtag(key_word, number)
           # フォロー
           elsif @rcd.follow.to_s != params[:instabot][:follow]
-            auto_follow(key_word)
             @rcd.follow = params[:instabot][:follow]
+            @rcd.save
+            auto_follow(key_word)
           # アンフォロー
           elsif @rcd.unfollow.to_s != params[:instabot][:unfollow]
-            auto_unfollow(key_word)
             @rcd.unfollow = params[:instabot][:unfollow]
+            @rcd.save
+            auto_unfollow(key_word)
           end
           if hash_rcd == hash_rcds.last
-            @rcd.user_id = current_user.id
-            @rcd.save
             redirect_to root_path
           end
 
