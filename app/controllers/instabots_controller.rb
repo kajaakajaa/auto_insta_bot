@@ -24,9 +24,12 @@ class InstabotsController < ApplicationController
           @rcd.user_id = current_user.id
           # いいね
           if @rcd.good.to_s != params[:instabot][:good]
-            @rcd.number = params[:instabot][:number]
+            @rcd.good = params[:instabot][:good]
             @rcd.save
             good_hashtag(key_word, number)
+            if @rcd.good == true
+              @rcd.update(good: !@rcd.good)
+            end
           # フォロー
           elsif @rcd.follow.to_s != params[:instabot][:follow]
             @rcd.follow = params[:instabot][:follow]
@@ -52,9 +55,16 @@ class InstabotsController < ApplicationController
           unfollow_val = params[:instabot][:unfollow]
 
           # いいね
-          if @rcd.good != good_val && good_val == "true"
-            key_word = hash_rcd.hashtag
-            good_hashtag(key_word, number)
+          if @rcd.good.to_s != good_val
+            if good_val == "true"
+              @rcd.update(good: good_val)
+              good_hashtag(key_word, number)
+              # いいね後offに切り替える。
+              @rcd.update(good: !@rcd.good)
+            else
+              @rcd.update(good: good_val)
+            end
+            puts "いいねを#{@rcd.good}にしました。"
           # フォロー
           elsif @rcd.follow.to_s != follow_val
             if follow_val == "true" && unfollow_val == "false"
