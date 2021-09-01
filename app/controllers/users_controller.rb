@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     @auto = Instabot.new
     @hashtag = Hashtag.new
-    @key_words = Hashtag.includes(:user).order(created_at: :DESC)
+    @key_words = Hashtag.where(user_id: current_user.id).order(created_at: :desc)
     @number = Instabot.find_by(user_id: current_user.id)
     #新規登録の場合（データベースにデータがまだ無い場合）
     if Instabot.exists?(user_id: current_user.id)
