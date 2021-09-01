@@ -14,6 +14,5 @@ class CreateHashtags < ActiveRecord::Migration[6.0]
   end
   def down
     add_column :hashtags, :number, :integer, default: 50, null: false
-    change_column :hashtags, :hashtag, :string, null: true
   end
 end
