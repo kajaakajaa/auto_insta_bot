@@ -62,7 +62,8 @@ module InstabotAction
       encode_word = URI.encode_www_form_component(key_word)
       sleep 3
       @driver.navigate.to"https://www.instagram.com/explore/tags/#{encode_word}/"
-      sleep 3
+      wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+      wait.until{@driver.find_element(:class_name, "_9AhH0").displayed?}
       @driver.execute_script("document.querySelectorAll('article img')[9].click()")
       sleep 3
       number.times{
